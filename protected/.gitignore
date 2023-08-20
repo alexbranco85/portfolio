@@ -1,0 +1,5 @@
+protected/node_modules
+code/node_modules
+protected/package-lock.json
+code/package-lock.json
+protected/config.json
