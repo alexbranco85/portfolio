@@ -1,0 +1,94 @@
+body {
+  background-color: rgb(20, 20, 20);
+  margin: 0;
+}
+
+.menu-button {
+  background-color: #eeee00;
+  color: #fff;
+  position: absolute;
+  z-index: 1;
+  top: 10px;
+  left: 10px;
+  display: block;
+  border: 2px solid #eeee00;
+}
+
+.menu-button:hover {
+  background-color: #242424;
+  color: #fff;
+}
+
+.menu {
+  height: 100vh;
+  overflow: hidden;
+  -webkit-transition: all 1s ease;
+  -moz-transition: all 1s ease;
+  transition: all 1s ease;
+  position: absolute;
+  left: -240px;
+  top: 0;
+  z-index: 0;
+  background-color: #F55307;
+  box-sizing: content-box;
+}
+
+.menu-animated {
+  height: 100vh;
+  left: 0;
+}
+
+.menu-container {
+  padding-top: 80px;
+  padding-left: 80px;
+  width: 180px;
+}
+
+.menu-item {
+  font-size: 24px;
+}
+
+.menu-item:hover {
+  font-size: 24px;
+  font-weight: bolder;
+  cursor: pointer;
+}
+
+.menu-line {
+  width: 25px;
+  height: 2px;
+  background-color: #000;
+  display: block;
+  margin: 5px auto;
+  transition: all 0.3s ease-in-out;
+}
+
+.menu-button-activate {
+  border: 2px solid #000;
+  background: transparent;
+}
+
+.menu-button:hover .menu-line, .menu-button-activate:hover .menu-line {
+  background-color: #eeee00;
+}
+
+/* hides 2. line  */
+.menu-button-activate .menu-line:nth-child(2) {
+  width: 0;
+}
+
+/* 1. and 3. line whaits for secound line to hide*/
+.menu-button-activate .menu-line:nth-child(1),
+.menu-button-activate .menu-line:nth-child(3) {
+  transition-delay: 0.3s;
+}
+
+/* 1. line slides down to middle and rotates -45deg */
+.menu-button-activate .menu-line:nth-child(1) {
+  transform: translateY(8px) rotate(-45deg);
+}
+
+/* 3. line slides up to midle and rotates 45deg */
+.menu-button-activate .menu-line:nth-child(3) {
+  transform: translateY(-8px) rotate(45deg);
+}
