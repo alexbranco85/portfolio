@@ -1,6 +1,15 @@
+.MuiOutlinedInput-input {
+  color: #fff
+}
+
+.MuiOutlinedInput-notchedOutline, .MuiOutlinedInput-notchedOutline:hover {
+  border-color: rgba(255, 255, 255, 0.23)
+}
+
 body {
   background-color: rgb(20, 20, 20);
   margin: 0;
+  color: #fff;
 }
 
 .menu-button {
@@ -68,7 +77,8 @@ body {
   background: transparent;
 }
 
-.menu-button:hover .menu-line, .menu-button-activate:hover .menu-line {
+.menu-button:hover .menu-line,
+.menu-button-activate:hover .menu-line {
   background-color: #eeee00;
 }
 

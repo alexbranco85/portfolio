@@ -18,8 +18,7 @@ const Header = () => {
   }
 
   return (
-    <Box maxWidth='xl' sx={{ textAlign: 'left' }}>
-
+    <Box maxWidth='xl' sx={{ textAlign: 'left', zIndex: 2, position: 'absolute', top: 0 }}>
       <Box>
         <IconButton onClick={showMenu} size="large" className="menu-button" sx={{ borderRadius: 0, p:2 }}>
           <span class="menu-line"></span>

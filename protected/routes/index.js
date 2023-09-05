@@ -2,11 +2,9 @@ const express = require('express');
 const router = express.Router();
 
 const workController = require('../controllers/WorkController');
-const WorkController = require('../controllers/WorkController');
 
 router.get('/work/:id', workController.showWork);
-
-router.get('/teste/', WorkController.showWork)
+router.get('/allwork', workController.allWork);
 
 router.get('/', (req, res) => {
   res.send('Hello World!');
@@ -15,5 +13,5 @@ router.get('/', (req, res) => {
 router.get('/bu', (req, res) => {
   res.send('Hello World bu!');
 })
-
+1
 module.exports = router
