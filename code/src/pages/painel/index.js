@@ -1,5 +1,7 @@
+import { PanelMenu } from "@/components/painel/panelMenu";
 import api from "@/services/api";
-import { Container, Grid, Typography } from "@mui/material";
+import { Button, Container, Grid, Typography } from "@mui/material";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 
 const Login = () => {
@@ -26,6 +28,8 @@ const Login = () => {
 
   return (
     <Grid container sm={12} sx={{ backgroundImage: 'url("bg-home.png")', backgroundPosition: 'center', backgroundSize: 'cover', height: '100vh', paddingLeft: 20, alignItems: 'center' }}>
+      <PanelMenu />
+
       <Grid item sm={12}>
         {works.length > 0 && (
           works.map((item) => (

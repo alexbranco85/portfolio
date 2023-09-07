@@ -11,16 +11,6 @@ module.exports = (sequelize, DataType) => {
       length: 90,
       allowNull: false
     },
-    alt_text: {
-      type: DataType.STRING,
-      length: 100,
-      allowNull: false
-    },
-    description: {
-      type: DataType.STRING,
-      length: 450,
-      allowNull: false
-    },
     fk_id_work: {
       type: DataType.INTEGER,
       allowNull: false
