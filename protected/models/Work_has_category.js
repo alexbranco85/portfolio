@@ -21,12 +21,12 @@ module.exports = (sequelize, DataType) => {
 
   Work_has_category.associate = (modelsList) => {
     Work_has_category.belongsTo(modelsList.Category, {
-      foreignKey: 'id_category_fk', // Use 'id_category_fk' como chave estrangeira
+      foreignKey: 'id_category_fk',
       as: 'category'
     });
 
     Work_has_category.belongsTo(modelsList.Work, {
-      foreignKey: 'id_work_fk', // Use 'id_work_fk' como chave estrangeira
+      foreignKey: 'id_work_fk',
       as: 'work'
     });
   };

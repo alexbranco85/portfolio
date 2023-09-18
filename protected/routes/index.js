@@ -1,14 +1,21 @@
 const express = require('express');
 const app = express();
 const router = express.Router();
+require("dotenv-safe").config();
+const jwt = require('jsonwebtoken');
+const auth = require('../middlewares/auth') /* Auth */
 
 const upload = require('../middlewares/uploads');
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+require("dotenv-safe").config();
+
+// app.use('/files', express.static(path.resolve(__dirname,"images")));
 
 const workController = require('../controllers/WorkController');
-const categoryController = require('../controllers/CategoryController')
+const categoryController = require('../controllers/CategoryController');
+const loginController = require('../controllers/LoginController');
 
 // ** Works
 router.get('/work/:id', workController.showWork);
@@ -21,12 +28,11 @@ router.post('/uploadimages', upload.any(), workController.uploadImages)
 // ** Categories
 router.get('/allcategories', categoryController.allCategories);
 
-router.get('/', (req, res) => {
-  res.send('Hello World!');
-})
+// ** Login
+router.post('/login', loginController.login)
+router.post('/verify', loginController.verify)
 
-router.get('/bu', (req, res) => {
-  res.send('Hello World bu!');
-})
-1
+// ** Panel
+router.post('/panel', auth)
+
 module.exports = router

@@ -27,7 +27,9 @@ export const InputText = (props) => {
     required,
     label,
     InputProps,
-    readOnly
+    readOnly,
+    multiline,
+    rows
   } = props;
 
   return (
@@ -41,6 +43,8 @@ export const InputText = (props) => {
             <TextField
               {...field}
               label={label}
+              multiline={multiline}
+              rows={rows}
               InputLabelProps={{ shrink: field.value ? true : false }}
               InputProps={{
                 readOnly,

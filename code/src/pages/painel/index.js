@@ -3,10 +3,13 @@ import api from "@/services/api";
 import { Button, Container, Grid, Typography } from "@mui/material";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { LoginVerify } from "@/utils/functions";
+import { useRouter } from "next/router";
 
 const Login = () => {
 
   const [works, setWorks] = useState([]);
+  const router = useRouter();
 
   const getWork = async () => {
     await fetch(`${api}allwork`)
@@ -18,7 +21,16 @@ const Login = () => {
       })
   }
 
+  const checkToken = async () => {
+    let check = await LoginVerify();
+    console.log('check', check)
+    if(!check){
+      router.push('/login');
+    }
+  }
+
   useEffect(() => {
+    checkToken();
     getWork()
   }, [])
 
@@ -36,10 +48,6 @@ const Login = () => {
             <Typography>{item.work_title}</Typography>
           )
           ))}
-      </Grid>
-
-      <Grid item sm={12}>
-        <Typography>Bem-vindo!</Typography>
       </Grid>
     </Grid>
   )

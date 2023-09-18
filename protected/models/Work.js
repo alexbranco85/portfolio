@@ -23,16 +23,14 @@ module.exports = (sequelize, DataType) => {
 
   Work.associate = (modelsList) => {
     Work.hasMany(modelsList.Image, {
-      foreignKey: 'id_image',
+      foreignKey: 'fk_id_work',
       as: 'image'
     })
-  }
 
-  Work.associate = (modelsList) => {
     Work.hasMany(modelsList.Work_has_category, {
-      foreignKey: 'id_work_has_category',
-      as: 'work_has_category'
-    })
+      foreignKey: 'id_work_fk',
+      as: 'work_has_category',
+    });
   }
 
   return Work

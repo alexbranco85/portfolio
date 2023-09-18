@@ -3,6 +3,7 @@ import { useTheme } from "@emotion/react"
 import { Box, Button, Container, IconButton, Menu, MenuItem, Stack, Typography } from "@mui/material";
 import { MenuPages } from "@/utils";
 import * as MaterialIcon from "@mui/icons-material";
+import Link from "next/link";
 
 const Header = () => {
 
@@ -13,7 +14,6 @@ const Header = () => {
     let menuButton = document.getElementsByClassName("menu-button")[0];
     
     menuButton.classList.toggle('menu-button-activate')
-    console.log('menu', menu)
     menu.classList.toggle('menu-animated')
   }
 
@@ -29,7 +29,7 @@ const Header = () => {
       <Box className="menu">
         <Box className="menu-container">
           {MenuPages.map(item => (
-            <Typography className="menu-item">{item.name}</Typography>
+            <Link href={item.link}><Typography className="menu-item">{item.name}</Typography></Link>
           ))}
         </Box>
       </Box>
