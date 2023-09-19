@@ -29,7 +29,8 @@ export const InputText = (props) => {
     InputProps,
     readOnly,
     multiline,
-    rows
+    rows,
+    type
   } = props;
 
   return (
@@ -45,6 +46,7 @@ export const InputText = (props) => {
               label={label}
               multiline={multiline}
               rows={rows}
+              type={type ? type : 'text'}
               InputLabelProps={{ shrink: field.value ? true : false }}
               InputProps={{
                 readOnly,

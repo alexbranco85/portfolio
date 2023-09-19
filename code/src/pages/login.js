@@ -1,10 +1,10 @@
 import { InputText } from "@/components/Fields/InputText";
-import api from "@/services/api";
+import backendApi from "@/app/api/api";
 import { Alert, Button, Grid } from "@mui/material";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { LoginVerify } from "@/utils/functions";
+import { signIn } from "next-auth/react";
 
 const Login = () => {
 
@@ -28,38 +28,19 @@ const Login = () => {
   });
 
   const handleSubmitForm = async (e) => {
-    const textData = getValues();
-    const response = await fetch(`${api}login`, {
-      method: 'POST',
-      body: JSON.stringify(textData),
-      headers: {
-        'Content-Type': 'application/json',
-      },
+    const result = await signIn('credentials', {
+      login: getValues('login'),
+      password: getValues('password'),
+      redirect: false,
     })
-      .then(response => response.json())
-      .then(data => {
-        if (data.auth) {
-          setLoginErrors(null);
-          document.cookie = `auth=${data.token}; expires=${new Date(2100, 0, 1)}`
 
-          alert('Login realizado!')
-          router.push('/painel')
-        } else {
-          setLoginErrors('Login e/ou senha Inválidos');
-        }
-      })
-  }
-
-  const checkToken = async () => {
-    let check = await LoginVerify();
-    if(check){
-      router.push('/painel');
+    if(result?.error){
+      console.error(result);
+      return
     }
+    
+    router.replace('/painel');
   }
-
-  useEffect(() => {
-    checkToken();
-  }, [])
 
   return (
     <form id="form-work" onSubmit={handleSubmit((e) => handleSubmitForm(e))}>
@@ -79,6 +60,7 @@ const Login = () => {
           <InputText
             name="password"
             label="Password"
+            type="password"
             variant="outlined"
             control={control}
             fullWidth />

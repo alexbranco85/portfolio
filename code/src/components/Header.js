@@ -21,15 +21,15 @@ const Header = () => {
     <Box maxWidth='xl' sx={{ textAlign: 'left', zIndex: 2, position: 'absolute', top: 0 }}>
       <Box>
         <IconButton onClick={showMenu} size="large" className="menu-button" sx={{ borderRadius: 0, p:2 }}>
-          <span class="menu-line"></span>
-          <span class="menu-line"></span>
-          <span class="menu-line"></span>
+          <span className="menu-line"></span>
+          <span className="menu-line"></span>
+          <span className="menu-line"></span>
         </IconButton>
       </Box>
       <Box className="menu">
         <Box className="menu-container">
           {MenuPages.map(item => (
-            <Link href={item.link}><Typography className="menu-item">{item.name}</Typography></Link>
+            <Link href={item.link} key={item.link}><Typography className="menu-item">{item.name}</Typography></Link>
           ))}
         </Box>
       </Box>

@@ -1,9 +1,9 @@
 import { PanelMenu } from "@/components/painel/panelMenu";
-import api from "@/services/api";
+import backendApi from "@/app/api/api";
 import { Button, Container, Grid, Typography } from "@mui/material";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { LoginVerify } from "@/utils/functions";
+import { checkAuth } from "@/utils/functions";
 import { useRouter } from "next/router";
 
 const Login = () => {
@@ -21,25 +21,12 @@ const Login = () => {
       })
   }
 
-  const checkToken = async () => {
-    let check = await LoginVerify();
-    console.log('check', check)
-    if(!check){
-      router.push('/login');
-    }
-  }
-
   useEffect(() => {
-    checkToken();
-    getWork()
+    checkAuth();
   }, [])
 
-  useEffect(() => {
-    console.log('works', works)
-  }, [works])
-
   return (
-    <Grid container sm={12} sx={{ backgroundImage: 'url("bg-home.png")', backgroundPosition: 'center', backgroundSize: 'cover', height: '100vh', paddingLeft: 20, alignItems: 'center' }}>
+    <Grid container sx={{ backgroundImage: 'url("bg-home.png")', backgroundPosition: 'center', backgroundSize: 'cover', height: '100vh', paddingLeft: 20, alignItems: 'center' }}>
       <PanelMenu />
 
       <Grid item sm={12}>

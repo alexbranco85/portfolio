@@ -1,8 +1,11 @@
 import { InputText } from "@/components/Fields/InputText";
 import { SelectField } from "@/components/Fields/SelectField";
-import api from "@/services/api";
+import { PanelMenu } from "@/components/painel/panelMenu";
+import backendApi from "../../app/api/api";
+import { LoginVerify } from "@/utils/functions";
 import { Image } from "@mui/icons-material";
 import { Box, Button, Grid, Typography } from "@mui/material";
+import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import Dropzone from "react-dropzone";
 import { useForm } from "react-hook-form";
@@ -15,6 +18,8 @@ const Login = () => {
   const [images, setImages] = useState([]);
   const [dataImages, setDataImages] = useState([]);
   const [featuredImage, setFeaturedImage] = useState([]);
+
+  const router = useRouter();
 
 
   const {
@@ -34,7 +39,7 @@ const Login = () => {
   });
 
   const getWork = async () => {
-    await fetch(`${api}allwork`)
+    await fetch(`${backendApi}allwork`)
       .then(response => {
         return response.json();
       })
@@ -67,7 +72,7 @@ const Login = () => {
   }
 
   const getCategories = async () => {
-    await fetch(`${api}allcategories`)
+    await fetch(`${backendApi}allcategories`)
       .then(response => {
         return response.json();
       })
@@ -93,7 +98,7 @@ const Login = () => {
     }
     formData.append('id_work', id)
 
-    await fetch(`${api}uploadimages`, {
+    await fetch(`${backendApi}uploadimages`, {
       method: 'POST',
       body: formData,
       'Content-Type': 'multipart/form-data'
@@ -127,7 +132,7 @@ const Login = () => {
       formData.append(key, textData[key]);
     }
 
-    const response = await fetch(`${api}savework`, {
+    const response = await fetch(`${backendApi}savework`, {
       method: 'POST',
       body: JSON.stringify(textData),
       headers: {
@@ -148,80 +153,86 @@ const Login = () => {
   }, [])
 
   return (
-    <form id="form-work" onSubmit={handleSubmit((e) => handleSubmitForm(e))}>
-      <Grid container spacing={2} sx={{ p: 15 }}>
-        <Grid item sm={12}>
-          <InputText
-            name="work_title"
-            label="Title"
-            variant="outlined"
-            control={control}
-            fullWidth />
-        </Grid>
-        <Grid item sm={12}>
-          <InputText
-            name="work_description"
-            label="Description"
-            multiline
-            rows={5}
-            variant="outlined"
-            control={control}
-            fullWidth />
-        </Grid>
-        <Grid item sm={12}>
-          <SelectField
-            name="category"
-            label="Category"
-            options={categories}
-            optionContent="name"
-            optionValue="id_category"
-            variant="outlined"
-            multiple
-            control={control}
-            fullWidth />
-        </Grid>
-        <Grid item sm={6}>
-          <Dropzone onDrop={acceptedFiles => onDropFeatured(acceptedFiles)}>
-            {({ getRootProps, getInputProps }) => (
-              <Box sx={{ border: '1px solid #ffffff40', borderRadius: 1, pt: 3, pb: 1, textAlign: 'center' }}>
-                <div {...getRootProps()}>
-                  <input {...getInputProps()} />
-                  <Typography><strong>Featured Image</strong></Typography>
-                  <Image />
-                  <Typography>Drop files to send</Typography>
-                </div>
-              </Box>
-            )}
-          </Dropzone>
-        </Grid>
-        <Grid item sm={6}>
-          <Dropzone onDrop={acceptedFiles => onDrop(acceptedFiles)}>
-            {({ getRootProps, getInputProps }) => (
-              <Box sx={{ border: '1px solid #ffffff40', borderRadius: 1, pt: 3, pb: 1, textAlign: 'center' }}>
-                <div {...getRootProps()}>
-                  <input {...getInputProps()} />
-                  <Typography><strong>Other Images</strong></Typography>
-                  <Image />
-                  <Typography>Drop files to send</Typography>
-                </div>
-              </Box>
-            )}
-          </Dropzone>
-        </Grid>
-        <Grid item sm={12}>
-          <Grid container>
-            {dataImages.length > 0 ? dataImages.map((item, index) => (
-              <Grid item sm={2}>
-                <img src={item.tempURL} width={'100%'} onClick={() => removeImg(item, index)} />
-              </Grid>
-            )) : ''}
+    <>
+
+      <form id="form-work" onSubmit={handleSubmit((e) => handleSubmitForm(e))}>
+        <Grid container spacing={2} sx={{ p: 15 }}>
+          <Grid item sm={12} sx={{ pb: 5 }}>
+            <PanelMenu />
+          </Grid>
+          <Grid item sm={12}>
+            <InputText
+              name="work_title"
+              label="Title"
+              variant="outlined"
+              control={control}
+              fullWidth />
+          </Grid>
+          <Grid item sm={12}>
+            <InputText
+              name="work_description"
+              label="Description"
+              multiline
+              rows={5}
+              variant="outlined"
+              control={control}
+              fullWidth />
+          </Grid>
+          <Grid item sm={12}>
+            <SelectField
+              name="category"
+              label="Category"
+              options={categories}
+              optionContent="name"
+              optionValue="id_category"
+              variant="outlined"
+              multiple
+              control={control}
+              fullWidth />
+          </Grid>
+          <Grid item sm={6}>
+            <Dropzone onDrop={acceptedFiles => onDropFeatured(acceptedFiles)}>
+              {({ getRootProps, getInputProps }) => (
+                <Box sx={{ border: '1px solid #ffffff40', borderRadius: 1, pt: 3, pb: 1, textAlign: 'center' }}>
+                  <div {...getRootProps()}>
+                    <input {...getInputProps()} />
+                    <Typography><strong>Featured Image</strong></Typography>
+                    <Image />
+                    <Typography>Drop files to send</Typography>
+                  </div>
+                </Box>
+              )}
+            </Dropzone>
+          </Grid>
+          <Grid item sm={6}>
+            <Dropzone onDrop={acceptedFiles => onDrop(acceptedFiles)}>
+              {({ getRootProps, getInputProps }) => (
+                <Box sx={{ border: '1px solid #ffffff40', borderRadius: 1, pt: 3, pb: 1, textAlign: 'center' }}>
+                  <div {...getRootProps()}>
+                    <input {...getInputProps()} />
+                    <Typography><strong>Other Images</strong></Typography>
+                    <Image />
+                    <Typography>Drop files to send</Typography>
+                  </div>
+                </Box>
+              )}
+            </Dropzone>
+          </Grid>
+          <Grid item sm={12}>
+            <Grid container>
+              {dataImages.length > 0 ? dataImages.map((item, index) => (
+                <Grid item sm={2}>
+                  <img src={item.tempURL} width={'100%'} onClick={() => removeImg(item, index)} />
+                </Grid>
+              )) : ''}
+            </Grid>
+          </Grid>
+          <Grid item sm={12}>
+            <Button variant="contained" fullWidth type="submit">Enviar</Button>
           </Grid>
         </Grid>
-        <Grid item sm={12}>
-          <Button variant="contained" fullWidth type="submit">Enviar</Button>
-        </Grid>
-      </Grid>
-    </form>
+      </form>
+    </>
   )
 }
 

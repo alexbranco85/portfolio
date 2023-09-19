@@ -1,4 +1,4 @@
-import api from "@/services/api";
+import backendApi from "../app/api/api";
 import { Box, Grid, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
 import '../theme/styles.css'
@@ -8,7 +8,7 @@ const works = () => {
   const [works, setWorks] = useState();
 
   const getWork = async () => {
-    await fetch(`${api}allwork`)
+    await fetch(`${backendApi}allwork`)
       .then(response => {
         return response.json();
       })
@@ -19,7 +19,7 @@ const works = () => {
 
   const handleFeaturedImage = (item) => {
     let imageName = item.image.find(image => image.featured == 1);
-    let route = `${api}images/${imageName.name}`;
+    let route = `${backendApi}images/${imageName.name}`;
     return route;
   }
 
