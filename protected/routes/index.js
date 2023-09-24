@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 const router = express.Router();
-require("dotenv-safe").config();
+require("dotenv-safe").config({ path: '.env' });
 const jwt = require('jsonwebtoken');
 const auth = require('../middlewares/auth') /* Auth */
 

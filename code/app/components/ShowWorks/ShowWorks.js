@@ -1,9 +1,10 @@
-import backendApi from "../app/api/api";
-import { Box, Grid, Typography } from "@mui/material";
-import { useEffect, useState } from "react";
-import '../theme/styles.css'
+"use client"
 
-const works = () => {
+import { useEffect, useState } from "react";
+import backendApi from "../../api/api";
+import { Box, Grid, Typography } from "@mui/material";
+
+const ShowWorks = () => {
 
   const [works, setWorks] = useState();
 
@@ -27,10 +28,6 @@ const works = () => {
     getWork();
   }, [])
 
-  useEffect(() => {
-    console.log('works', works);
-  }, [works])
-
   return (
     <Grid container>
       {works?.length > 0 && works.map(item =>
@@ -53,4 +50,4 @@ const works = () => {
   )
 }
 
-export default works
+export default ShowWorks;

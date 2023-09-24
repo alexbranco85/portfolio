@@ -1,3 +1,4 @@
+"use client"
 const { createTheme } = require("@mui/material");
 
 const theme = createTheme({
@@ -23,11 +24,25 @@ const theme = createTheme({
       marginBottom: 10,
     },
 
+    body2: {
+      marginBottom: 0,
+    },
+
     subtitle1: {
       fontSize: 48,
       color: '#eeee00',
       marginBottom: 10,
     },
+
+    h2: {
+      fontSize: 24,
+      color: '#F55307'
+    },
+
+    h3: {
+      fontSize: 20,
+      color: '#fff'
+    }
   },
 
 });

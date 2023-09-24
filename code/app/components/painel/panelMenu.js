@@ -1,14 +1,17 @@
 import { Button, Grid } from "@mui/material"
 import Link from "next/link"
-import { exitPanel } from "@/utils/functions"
-import Cookies from "js-cookie"
+import { signOut } from "next-auth/react"
+import { useRouter } from "next/navigation"
 
 export const PanelMenu = () => {
 
-  const exitPanel = () => {
-    Cookies.remove('auth', { path: '/painel' });
-    console.log('cookie', Cookies.get('auth'))
-    location.reload();
+  const router = useRouter();
+
+  const exitPanel = async () => {
+    await signOut({
+      redirect: false
+    })
+    router.replace('/')
   }
 
   return (
@@ -22,7 +25,7 @@ export const PanelMenu = () => {
         </Button>
       </Grid>
       <Grid item sm={2}>
-        <Link href="./painel/insert">
+        <Link href="/painel/insert">
           <Button variant="contained" fullWidth>Works</Button>
         </Link>
       </Grid>

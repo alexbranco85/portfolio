@@ -32,17 +32,36 @@ const WorkController = {
 
       res.status(200).json({ data: works, success: true });
     } catch (error) {
-      res.status(400).json({ error: 'Erro ao buscar Work', success: false });
+      res.status(400).json({ error: error, success: false });
     }
   },
 
   showWork: async (req, res) => {
     try {
       const { id } = req.params;
+
       const work = await Work.findOne({
         where: {
           id_work: parseInt(id)
-        }
+        },
+        include: [
+          {
+            model: Work_has_category,
+            as: 'work_has_category',
+            attributes: ['id_category_fk'],
+            include: [
+              {
+                model: Category,
+                as: 'category',
+                attributes: ['id_category', 'name'],
+              },
+            ],
+          },{
+            model: Image,
+            as: 'image',
+            attributes: ['id_image', 'name', 'featured'],
+          },
+        ],
       })
       res.status(200).send({ data: work, success: true })
     } catch (error) {

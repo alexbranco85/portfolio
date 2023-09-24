@@ -1,7 +1,8 @@
-import theme from "@/theme/theme"
+"use client"
+import theme from "../../theme/theme";
 import { useTheme } from "@emotion/react"
 import { Box, Button, Container, IconButton, Menu, MenuItem, Stack, Typography } from "@mui/material";
-import { MenuPages } from "@/utils";
+import { MenuPages } from "../../utils";
 import * as MaterialIcon from "@mui/icons-material";
 import Link from "next/link";
 
@@ -12,7 +13,7 @@ const Header = () => {
   const showMenu = () => {
     let menu = document.getElementsByClassName("menu")[0];
     let menuButton = document.getElementsByClassName("menu-button")[0];
-    
+
     menuButton.classList.toggle('menu-button-activate')
     menu.classList.toggle('menu-animated')
   }
@@ -20,7 +21,7 @@ const Header = () => {
   return (
     <Box maxWidth='xl' sx={{ textAlign: 'left', zIndex: 2, position: 'absolute', top: 0 }}>
       <Box>
-        <IconButton onClick={showMenu} size="large" className="menu-button" sx={{ borderRadius: 0, p:2 }}>
+        <IconButton onClick={showMenu} size="large" className="menu-button" sx={{ borderRadius: 0, p: 2 }}>
           <span className="menu-line"></span>
           <span className="menu-line"></span>
           <span className="menu-line"></span>

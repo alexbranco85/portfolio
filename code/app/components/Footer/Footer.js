@@ -1,3 +1,4 @@
+"use client"
 import { Grid, Typography } from "@mui/material"
 
 const Footer = () => {

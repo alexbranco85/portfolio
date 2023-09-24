@@ -1,24 +1,9 @@
-import backendApi from "@/app/api/api";
+"use client"
 import { Grid, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
+import backendApi from "./api/api";
 
 const Home = () => {
-
-  const [work, setWork] = useState();
-
-  const getWork = async () => {
-    const res = await fetch(`${backendApi}work/1`)
-      .then(response => {
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
-        }
-        return response.json();
-      })
-  }
-
-  useEffect(() => {
-    getWork();
-  }, [])
 
   return (
     <Grid container sx={{ backgroundImage: 'url("bg-home.png")', backgroundPosition: 'center', backgroundSize: 'cover', height: '100vh', paddingLeft: 20, alignItems: 'center' }}>

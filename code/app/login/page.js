@@ -1,10 +1,10 @@
-import { InputText } from "@/components/Fields/InputText";
-import backendApi from "@/app/api/api";
-import { Alert, Button, Grid } from "@mui/material";
-import { useRouter } from "next/router";
+'use client'
+import { InputText } from "../components/Fields/InputText";
+import { Alert, Button, Divider, Grid, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { signIn } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 const Login = () => {
 
@@ -34,19 +34,28 @@ const Login = () => {
       redirect: false,
     })
 
-    if(result?.error){
+    if (result?.error) {
       console.error(result);
       return
     }
-    
+
     router.replace('/painel');
   }
 
   return (
     <form id="form-work" onSubmit={handleSubmit((e) => handleSubmitForm(e))}>
-      <Grid container spacing={2} sx={{ p: 15 }}>
+      <Grid container spacing={2} sx={{ px: 20, py: 5 }}>
         <Grid item sm={12}>
           {loginErrors && (<Alert severity='error'>{loginErrors}</Alert>)}
+        </Grid>
+        <Grid item sm={12}>
+          <Typography variant="h2">Faça seu Login</Typography>
+        </Grid>
+        <Grid item sm={12}>
+          <Typography variant="h3">Digite seu usuário e senha</Typography>
+        </Grid>
+        <Grid item sm={12}>
+          <Divider />
         </Grid>
         <Grid item sm={12}>
           <InputText
