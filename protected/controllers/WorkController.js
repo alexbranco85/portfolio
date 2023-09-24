@@ -22,7 +22,7 @@ const WorkController = {
                 attributes: ['id_category', 'name'],
               },
             ],
-          },{
+          }, {
             model: Image,
             as: 'image',
             attributes: ['id_image', 'name', 'featured'],
@@ -56,7 +56,7 @@ const WorkController = {
                 attributes: ['id_category', 'name'],
               },
             ],
-          },{
+          }, {
             model: Image,
             as: 'image',
             attributes: ['id_image', 'name', 'featured'],
@@ -94,6 +94,56 @@ const WorkController = {
       res.status(201).json({ msg: 'Work saved!', id_work: newWorkId });
     } catch (error) {
       console.error('Erro ao criar o trabalho:', error);
+      res.status(400).json({ error });
+    }
+  },
+
+  update: async (req, res) => {
+    try {
+      let updateWork = req.body;
+      let workId = req.params.id;
+
+      const updated = await Work.update(updateWork, { where: { id_work: workId } });
+
+      let categories = req.body.category;
+
+      let removeCategories = req.body.categoriesToDelete;
+
+      const relationPromises = [];
+      for (const categoryId of categories) {
+        const existingRelation = await Work_has_category.findOne({
+          where: {
+            id_work_fk: workId,
+            id_category_fk: categoryId
+          }
+        });
+        if (!existingRelation) {
+          const relationPromise = Work_has_category.create({
+            id_work_fk: workId,
+            id_category_fk: categoryId
+          });
+          relationPromises.push(relationPromise);
+        }
+      }
+
+      if (removeCategories) {
+        console.log('removeCategories', removeCategories)
+        for (const categoryId of removeCategories) {
+          const relationPromise = Work_has_category.destroy({
+            where: {
+              id_work_fk: workId,
+              id_category_fk: categoryId
+            }
+          });
+          relationPromises.push(relationPromise);
+        }
+      }
+
+      await Promise.all(relationPromises);
+
+      res.status(201).json({ msg: 'Work updated!', id_work: workId });
+    } catch (error) {
+      console.error('Erro ao atualizar o trabalho:', error);
       res.status(400).json({ error });
     }
   },

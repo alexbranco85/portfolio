@@ -25,7 +25,7 @@ export const PanelMenu = () => {
         </Button>
       </Grid>
       <Grid item sm={2}>
-        <Link href="/painel/insert">
+        <Link href="/painel/">
           <Button variant="contained" fullWidth>Works</Button>
         </Link>
       </Grid>

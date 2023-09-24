@@ -1,11 +1,13 @@
 "use client"
 
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { useForm } from "react-hook-form"
 import { Image } from "@mui/icons-material";
 import { Grid, Box, Button, Typography } from "@mui/material"
 import { PanelMenu } from "../../components/painel/panelMenu";
 import Dropzone from "react-dropzone";
+import backendApi from "../../api/api";
+import { toast } from "react-toastify";
 
 const { InputText } = require("../../components/Fields/InputText")
 const { SelectField } = require("../../components/Fields/SelectField")
@@ -131,6 +133,10 @@ const InsertWork = () => {
         }
       })
   }
+
+  useEffect(() => {
+    getCategories();
+  }, [])
 
   return (
     <form id="form-work" onSubmit={handleSubmit((e) => handleSubmitForm(e))}>

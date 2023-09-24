@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react"
 import { useForm } from "react-hook-form"
-import { Image } from "@mui/icons-material";
+import { Image, Star } from "@mui/icons-material";
 import { Grid, Box, Button, Typography, Divider } from "@mui/material"
 import { PanelMenu } from "../../../components/painel/panelMenu";
 import Dropzone from "react-dropzone";
@@ -10,6 +10,7 @@ import backendApi from "../../../api/api";
 import { useRouter } from "next/navigation";
 import { usePathname } from "next/navigation";
 import { useSearchParams } from "next/navigation";
+import { toast } from "react-toastify";
 
 const { InputText } = require("../../../components/Fields/InputText")
 const { SelectField } = require("../../../components/Fields/SelectField")
@@ -22,6 +23,7 @@ const InsertWork = () => {
   const [featuredImage, setFeaturedImage] = useState([]);
   const [workEdit, setWorkEdit] = useState();
   const [showImages, setShowImages] = useState([]);
+  const [arrRemoveImages, setArrRemoveImages] = useState([])
 
   const router = useRouter();
   const pathname = usePathname();
@@ -92,10 +94,11 @@ const InsertWork = () => {
   }
 
   const handleSetFieldsValues = () => {
-    const categories = workEdit.work_has_category.map(item => item.id_category_fk);
-    setValue('work_title', workEdit.work_title);
+    const categories = workEdit?.work_has_category.map(item => item.id_category_fk);
+    setValue('work_title', workEdit?.work_title);
     setValue('category', categories);
-    setValue('work_description', workEdit.work_description)
+    setValue('work_description', workEdit?.work_description);
+    setValue('id_work', workEdit?.id_work);
   }
 
   const removeImg = (item, index) => {
@@ -123,14 +126,15 @@ const InsertWork = () => {
       console.log('res', res)
       let resJson = await res.json();
       if (resJson.success) {
-        setImages([]);
-        setFeaturedImage([]);
-        setDataImages([]);
-        reset();
         toast.success('Work saved!', {
           theme: 'dark',
           position: "top-center",
         })
+        setImages([]);
+        setFeaturedImage([]);
+        setDataImages([]);
+        router.replace('/painel')
+        reset();
       } else {
         toast.error('Error. Work not save!', {
           theme: 'dark',
@@ -143,14 +147,27 @@ const InsertWork = () => {
 
   const handleSubmitForm = async (e) => {
     const formData = new FormData();
-    const textData = getValues();
+    let textData = getValues();
+    const workCategories = workEdit.work_has_category.map(item => item.category.id_category);
+    let categoriesToDelete = [];
+    for (const id of workCategories) {
+      if (!textData.category.includes(id)) {
+        categoriesToDelete.push(id);
+      }
+    }
+
+    textData = {
+      ...textData,
+      imagesToDelete: arrRemoveImages,
+      categoriesToDelete: categoriesToDelete,
+    }
 
     for (const key in textData) {
       formData.append(key, textData[key]);
     }
 
-    const response = await fetch(`${backendApi}savework`, {
-      method: 'POST',
+    const response = await fetch(`${backendApi}update/${textData.id_work}`, {
+      method: 'PUT',
       body: JSON.stringify(textData),
       headers: {
         'Content-Type': 'application/json',
@@ -160,8 +177,14 @@ const InsertWork = () => {
       .then(data => {
         if (data && (images.length > 0 || featuredImage.length > 0)) {
           handleUploadImages(data.id_work);
+        } else {
+          router.replace('/painel')
         }
       })
+  }
+
+  const handleSetImagesToDelete = (image, index) => {
+    setArrRemoveImages([...arrRemoveImages, image]);
   }
 
   useEffect(() => {
@@ -173,6 +196,7 @@ const InsertWork = () => {
     if (workEdit) {
       handleSetFieldsValues()
     }
+    console.log(workEdit)
   }, [workEdit])
 
   return (
@@ -261,12 +285,17 @@ const InsertWork = () => {
           </Grid>
         )}
         <Grid item sm={12}>
-          {showImages.length > 0 && showImages.map((image, index) => (
-            <Grid item sm={2} key={index}>
-              <img src={`${backendApi}images/${image.name}`} width={'100%'} onClick={() => removeImg(item, index)} />
-              <Button variant="outlined" fullWidth size="small">Remove</Button>
-            </Grid>
-          ))}
+          <Grid container spacing={2}>
+            {showImages.length > 0 && showImages.map((image, index) => (
+              <Grid item sm={2} key={index} sx={{ position: 'relative' }}>
+                {image.featured == 1 && (
+                  <Box sx={{ position: 'absolute', color: '#ffff00' }}><Star /></Box>
+                )}
+                <img src={`${backendApi}images/${image.name}`} width={'100%'} />
+                <Button variant="outlined" fullWidth size="small" onClick={() => handleSetImagesToDelete(image.id_image, index)}>Remove</Button>
+              </Grid>
+            ))}
+          </Grid>
         </Grid>
         <Grid item sm={12}>
           <Button variant="contained" fullWidth type="submit">Salvar</Button>

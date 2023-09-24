@@ -20,10 +20,11 @@ const loginController = require('../controllers/LoginController');
 // ** Works
 router.get('/work/:id', workController.showWork);
 router.get('/allwork', workController.allWork);
+router.put('/update/:id', workController.update);
+router.post('/savework', workController.save);
 
 // ** Images
-router.post('/savework', workController.save)
-router.post('/uploadimages', upload.any(), workController.uploadImages)
+router.post('/uploadimages', upload.any(), workController.uploadImages);
 
 // ** Categories
 router.get('/allcategories', categoryController.allCategories);

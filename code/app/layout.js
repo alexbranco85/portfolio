@@ -1,4 +1,4 @@
-import { ThemeProvider } from '@mui/material'
+import { Box, ThemeProvider } from '@mui/material'
 import Footer from './components/Footer/Footer'
 import Header from './components/Header/Header'
 import './globals.css'
@@ -18,7 +18,7 @@ export default function RootLayout({ children }) {
         <ThemeProvider theme={theme}>
           <NextAuthSessionProvider>
             <Header />
-            {children}
+            <Box sx={{width: '100vw', boxSizing: 'border-box', maxHeight: 'calc(100vh - 37.5px)', overflow: 'auto'}}>{children}</Box>
             <Footer />
           </NextAuthSessionProvider>
         </ThemeProvider>

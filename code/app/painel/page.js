@@ -1,10 +1,10 @@
 "use client"
 import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
 import { Button, Divider, Grid, Typography } from "@mui/material";
 import backendApi from "../api/api";
 import { PanelMenu } from "../components/painel/panelMenu";
 import { AddCircleOutline, Check, Delete, Edit } from "@mui/icons-material";
+import { useRouter } from "next/navigation";
 
 const PanelHome = () => {
 
@@ -38,6 +38,7 @@ const PanelHome = () => {
           <Button
             startIcon={<AddCircleOutline />}
             variant="outlined"
+            onClick={() => router.replace('/painel/insert')}
             fullWidth>
             Adicionar Novo
           </Button>
@@ -67,6 +68,7 @@ const PanelHome = () => {
                 <Grid item sm={2}>
                   <Button
                     startIcon={<Edit />}
+                    onClick={() => router.replace(`/painel/edit/${item.id_work}`)}
                     variant="outlined"
                     size="small"
                     fullWidth>
