@@ -26,8 +26,8 @@ module.exports = (sequelize, DataType) => {
 
   Image.associate = (modelsList) => {
     Image.belongsTo(modelsList.Work, {
-      foreignKey: 'id_work',
-      as: 'work'
+      foreignKey: 'fk_id_work',
+      as: 'id_work'
     })
   }
 

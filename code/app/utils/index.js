@@ -5,8 +5,8 @@ export const MenuPages = [{
   name: 'About Me',
   link: '/about-me/'
 }, {
-  name: 'Works',
-  link: '/works/'
+  name: 'Jobs',
+  link: '/jobs/'
 }, {
   name: 'Contact',
   link: '/contact/'

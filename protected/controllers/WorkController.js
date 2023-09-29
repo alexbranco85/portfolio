@@ -101,13 +101,17 @@ const WorkController = {
   update: async (req, res) => {
     try {
       let updateWork = req.body;
-      let workId = req.params.id;
+      let workId = req.body.id_work;
 
       const updated = await Work.update(updateWork, { where: { id_work: workId } });
 
       let categories = req.body.category;
 
       let removeCategories = req.body.categoriesToDelete;
+
+      let removeImages = req.body.imagesToDelete;
+
+      let changeFeatured = req.body.changeFeatured;
 
       const relationPromises = [];
       for (const categoryId of categories) {
@@ -127,7 +131,6 @@ const WorkController = {
       }
 
       if (removeCategories) {
-        console.log('removeCategories', removeCategories)
         for (const categoryId of removeCategories) {
           const relationPromise = Work_has_category.destroy({
             where: {
@@ -139,6 +142,47 @@ const WorkController = {
         }
       }
 
+      if (removeImages) {
+        console.log('removeImages', removeImages)
+        for (const idImage of removeImages) {
+          const relationPromise = Image.destroy({
+            where: {
+              fk_id_work: workId,
+              id_image: idImage
+            }
+          });
+          relationPromises.push(relationPromise);
+        }
+      }
+
+      if (changeFeatured) {
+
+        
+
+        const oldFeatured = await Image.findOne({
+          where: {
+            fk_id_work: workId,
+            featured: 1
+          }
+        })
+
+        if (oldFeatured && oldFeatured.id_image != changeFeatured) {
+          const relationPromise = await Image.update({ featured: 0 }, {
+            where: {
+              id_image: oldFeatured.id_image
+            }
+          })
+          relationPromises.push(relationPromise);
+        }
+        if (oldFeatured && oldFeatured.id_image != changeFeatured) {
+          const relationPromise = Image.update({ featured: 1 }, {
+            where: {
+              id_image: changeFeatured
+            }
+          })
+          relationPromises.push(relationPromise);
+        }
+      }
       await Promise.all(relationPromises);
 
       res.status(201).json({ msg: 'Work updated!', id_work: workId });

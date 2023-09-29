@@ -23,7 +23,8 @@ const InsertWork = () => {
   const [featuredImage, setFeaturedImage] = useState([]);
   const [workEdit, setWorkEdit] = useState();
   const [showImages, setShowImages] = useState([]);
-  const [arrRemoveImages, setArrRemoveImages] = useState([])
+  const [arrRemoveImages, setArrRemoveImages] = useState([]);
+  const [changeFeatured, setChangeFeatured] = useState();
 
   const router = useRouter();
   const pathname = usePathname();
@@ -54,7 +55,11 @@ const InsertWork = () => {
         return response.json();
       })
       .then(data => {
-        console.log('data', data)
+        const image = data?.data.image?.find(item => item.featured == 1);
+        console.log('data.image', data.image)
+        if(image){
+          setChangeFeatured(image.id_image);
+        }
         setWorkEdit(data.data);
         setShowImages(data.data.image);
       })
@@ -162,6 +167,13 @@ const InsertWork = () => {
       categoriesToDelete: categoriesToDelete,
     }
 
+    if(changeFeatured){
+      textData = {
+        ...textData,
+        changeFeatured,
+      }
+    }
+
     for (const key in textData) {
       formData.append(key, textData[key]);
     }
@@ -196,7 +208,6 @@ const InsertWork = () => {
     if (workEdit) {
       handleSetFieldsValues()
     }
-    console.log(workEdit)
   }, [workEdit])
 
   return (
@@ -287,12 +298,13 @@ const InsertWork = () => {
         <Grid item sm={12}>
           <Grid container spacing={2}>
             {showImages.length > 0 && showImages.map((image, index) => (
-              <Grid item sm={2} key={index} sx={{ position: 'relative' }}>
+              <Grid item sm={2} key={index} sx={{ position: 'relative', opacity: arrRemoveImages.includes(image.id_image) && 0.4, pointerEvents: arrRemoveImages.includes(image.id_image) && 'none'}}>
                 {image.featured == 1 && (
                   <Box sx={{ position: 'absolute', color: '#ffff00' }}><Star /></Box>
                 )}
                 <img src={`${backendApi}images/${image.name}`} width={'100%'} />
                 <Button variant="outlined" fullWidth size="small" onClick={() => handleSetImagesToDelete(image.id_image, index)}>Remove</Button>
+                <Button sx={{ mt: 1 }} variant={changeFeatured && changeFeatured == image.id_image ? "contained" : "outlined"} fullWidth size="small" onClick={() => setChangeFeatured(image.id_image)}>Featured</Button>
               </Grid>
             ))}
           </Grid>

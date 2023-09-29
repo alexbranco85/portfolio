@@ -29,7 +29,7 @@ const ShowWorks = () => {
   }, [])
 
   return (
-    <Grid container>
+    <Grid container sx={{ pl: '20px' }}>
       {works?.length > 0 && works.map(item =>
         <Grid item sm={4} sx={{ position: 'relative' }}>
           <img src={handleFeaturedImage(item)} width={'100%'} />
