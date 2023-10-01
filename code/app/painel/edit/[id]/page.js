@@ -11,6 +11,7 @@ import { useRouter } from "next/navigation";
 import { usePathname } from "next/navigation";
 import { useSearchParams } from "next/navigation";
 import { toast } from "react-toastify";
+import { TextEditor } from "../../../components/Fields/TextEditor";
 
 const { InputText } = require("../../../components/Fields/InputText")
 const { SelectField } = require("../../../components/Fields/SelectField")
@@ -56,7 +57,6 @@ const InsertWork = () => {
       })
       .then(data => {
         const image = data?.data.image?.find(item => item.featured == 1);
-        console.log('data.image', data.image)
         if(image){
           setChangeFeatured(image.id_image);
         }
@@ -210,6 +210,10 @@ const InsertWork = () => {
     }
   }, [workEdit])
 
+  useEffect(() => {
+    console.log('watch', watch('work_description'))
+  }, [watch('work_description')])
+
   return (
     <form id="form-work" onSubmit={handleSubmit((e) => handleSubmitForm(e))}>
       <Grid container spacing={2} sx={{ px: 20, py: 5 }}>
@@ -225,14 +229,21 @@ const InsertWork = () => {
             fullWidth />
         </Grid>
         <Grid item sm={12}>
-          <InputText
+          <TextEditor
+            id='campo'
+            name={'work_description'}
+            label={'Descrição'}
+            control={control}
+            setValue={setValue}
+          />
+          {/* <InputText
             name="work_description"
             label="Description"
             multiline
             rows={5}
             variant="outlined"
             control={control}
-            fullWidth />
+            fullWidth /> */}
         </Grid>
         <Grid item sm={12}>
           <SelectField

@@ -1,14 +1,15 @@
-// ** React Imports
-import { forwardRef, useRef, useState } from "react";
+
+import { forwardRef, useEffect, useRef, useState } from "react";
 import { FormHelperText, OutlinedInput, useTheme } from "@mui/material";
 import {
   TextField,
   FormControl,
 } from "@mui/material";
 import { Controller } from "react-hook-form";
+import ReactQuill from "react-quill";
+import 'react-quill/dist/quill.snow.css';
 
-
-export const InputText = (props) => {
+export const TextEditor = (props) => {
 
   const {
     name,
@@ -19,8 +20,11 @@ export const InputText = (props) => {
     readOnly,
     multiline,
     rows,
-    type
+    type,
+    setValue
   } = props;
+
+  const [fieldValue, setFieldValue] = useState('')
 
   return (
     <FormControl fullWidth>
@@ -30,18 +34,13 @@ export const InputText = (props) => {
         rules={{ required: required }}
         render={({ field }) => (
           <>
-            <TextField
-              {...field}
+            <ReactQuill theme="snow"
+              value={field.value}
+              onChange={(value) => setValue(name, value)}
+              name={name}
               label={label}
-              multiline={multiline}
-              rows={rows}
-              type={type ? type : 'text'}
-              InputLabelProps={{ shrink: field.value ? true : false }}
-              InputProps={{
-                readOnly,
-                ...InputProps,
-              }}
-              fullWidth />
+              control={control}
+            />
           </>
         )}
       />

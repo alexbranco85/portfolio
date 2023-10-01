@@ -1,5 +1,4 @@
 "use client"
-
 import { useEffect, useState } from "react"
 import { useForm } from "react-hook-form"
 import { Image } from "@mui/icons-material";
@@ -8,6 +7,7 @@ import { PanelMenu } from "../../components/painel/panelMenu";
 import Dropzone from "react-dropzone";
 import backendApi from "../../api/api";
 import { toast } from "react-toastify";
+import { TextEditor } from "../../components/Fields/TextEditor";
 
 const { InputText } = require("../../components/Fields/InputText")
 const { SelectField } = require("../../components/Fields/SelectField")
@@ -119,6 +119,8 @@ const InsertWork = () => {
       formData.append(key, textData[key]);
     }
 
+    console.log('getValues', textData)
+
     const response = await fetch(`${backendApi}savework`, {
       method: 'POST',
       body: JSON.stringify(textData),
@@ -138,6 +140,10 @@ const InsertWork = () => {
     getCategories();
   }, [])
 
+  useEffect(() => {
+    console.log('watch', watch('descricao'));
+  }, [watch('descricao')])
+
   return (
     <form id="form-work" onSubmit={handleSubmit((e) => handleSubmitForm(e))}>
       <Grid container spacing={2} sx={{ px: 20, py: 5 }}>
@@ -153,14 +159,19 @@ const InsertWork = () => {
             fullWidth />
         </Grid>
         <Grid item sm={12}>
-          <InputText
+          <TextEditor
+            name={'work_description'}
+            label={'Descrição'}
+            control={control}
+          />
+          {/* <InputText
             name="work_description"
             label="Description"
             multiline
             rows={5}
             variant="outlined"
             control={control}
-            fullWidth />
+            fullWidth /> */}
         </Grid>
         <Grid item sm={12}>
           <SelectField

@@ -36,10 +36,6 @@ const JobSingle = () => {
     getWork();
   }, [])
 
-  useEffect(() => {
-    console.log('image', images)
-  }, images)
-
   return (
     <DefaultLoading isLoading={loading}>
       <Grid container spacing={4} sx={{ px: 20, py: 5 }}>
@@ -48,7 +44,7 @@ const JobSingle = () => {
           <Divider />
         </Grid>
         <Grid item lg={3} md={3} sm={3} xs={12}>
-          <Typography>{work?.work_description}</Typography>
+          <Typography sx={{'& p': {marginBottom: 0, marginTop: 1}}} dangerouslySetInnerHTML={{__html: work?.work_description}} />
         </Grid>
         <Grid item lg={9} md={9} sm={9} xs={12}>
           <Grid container spacing={0}>
