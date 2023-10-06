@@ -4,8 +4,10 @@ import backendApi from "../../api/api";
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import DefaultLoading from "../../components/Loading";
+import { Router } from "next/router";
+import { useTranslation } from "react-i18next";
 
-const { Typography, Grid, Divider } = require("@mui/material")
+const { Typography, Grid, Divider, Button } = require("@mui/material")
 
 const JobSingle = () => {
 
@@ -13,7 +15,11 @@ const JobSingle = () => {
   const [loading, setLoading] = useState(false);
   const [images, setImages] = useState([]);
 
+  const router = useRouter();
+
   const pathname = usePathname();
+
+  const { t } = useTranslation();
 
   const getWork = async () => {
     setLoading(true);
@@ -38,18 +44,19 @@ const JobSingle = () => {
 
   return (
     <DefaultLoading isLoading={loading}>
-      <Grid container spacing={4} sx={{ px: 20, py: 5 }}>
+      <Grid container spacing={4} sx={{ px: { xs: 10, sm: 10, md: 20, lg: 20 }, py: 5, cursor: 'pointer', backgroundColor: 'rgb(20, 20, 20)', height: 'calc(100vh - 37.5px)', mt: 0 }}>
         <Grid item sm={12}>
-          <Typography variant="subtitle1">{work?.work_title}</Typography>
+          <Typography variant="subtitle1">{t(work?.work_title)}</Typography>
           <Divider />
         </Grid>
-        <Grid item lg={3} md={3} sm={3} xs={12}>
-          <Typography sx={{'& p': {marginBottom: 0, marginTop: 1}}} dangerouslySetInnerHTML={{__html: work?.work_description}} />
+        <Grid item lg={4} md={12} sm={12} xs={12}>
+          <Button onClick={() => router.replace('/jobs')} variant="outlined">{t('Back')}</Button>
+          <Typography sx={{ '& p': { marginBottom: 0, marginTop: 1 } }} dangerouslySetInnerHTML={{ __html: t(work?.work_description) }} />
         </Grid>
-        <Grid item lg={9} md={9} sm={9} xs={12}>
+        <Grid item lg={8} md={12} sm={12} xs={12}>
           <Grid container spacing={0}>
             {images.map(item => (
-              <Grid sm={3} xs={12}>
+              <Grid lg={3} md={4} sm={6} xs={12}>
                 <img src={`${backendApi}images/${item.name}`} width={'100%'} />
               </Grid>
             ))}

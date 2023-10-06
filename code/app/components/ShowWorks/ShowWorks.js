@@ -4,12 +4,15 @@ import { useEffect, useState } from "react";
 import backendApi from "../../api/api";
 import { Box, Checkbox, FormControlLabel, Grid, Typography } from "@mui/material";
 import { useRouter } from "next/navigation";
+import { useTranslation } from "react-i18next";
 
 const ShowWorks = () => {
 
   const [works, setWorks] = useState();
 
   const router = useRouter();
+
+  const { t } = useTranslation();
 
   const getWork = async () => {
     await fetch(`${backendApi}allwork`)
@@ -33,9 +36,10 @@ const ShowWorks = () => {
 
   return (
     <>
-      <Grid container sx={{ cursor: 'pointer', pl: '20px', '& .categorias': { display: 'none' }, '& :hover .categorias': { display: 'flex' },'& :hover .workImg': {opacity: 0.1}}}>
+    <Grid container sx={{ backgroundColor: 'rgb(20, 20, 20)', height: '100%', alignContent: 'flex-start', height: 'calc(100vh - 37.5px)', pl: '20px', alignItems: 'center', '& .categorias': { display: 'none' }, '& :hover .categorias': { display: 'flex' },'& :hover .workImg': {opacity: 0.1} }}>
+      {/* <Grid container sx={{ cursor: 'pointer', pl: '20px', }}> */}
         {works?.length > 0 && works.map(item =>
-          <Grid item sm={3} onClick={() => router.replace(`/jobs/${item.id_work}`)} sx={{ position: 'relative' }}>
+          <Grid item lg={3} md={6} sm={6} xs={12} onClick={() => router.replace(`/jobs/${item.id_work}`)} sx={{ position: 'relative', cursor: 'pointer' }}>
             <Grid container spacing={0}>
               <Grid item sm={12} alignItems={'center'} alignContent={'center'} justifyContent={'center'} display={'flex'}>
                 <Box className='categorias' sx={{
@@ -56,12 +60,12 @@ const ShowWorks = () => {
               </Grid>
             </Grid>
             <Grid container spacing={0}>
-              <Grid item sm={12} sx={{
+              <Grid item sm={12} xs={12} sx={{
                 backgroundColor: '#000',
                 padding: '20px',
                 mt: '-5px'
               }}>
-                <Typography sx={{ mb: 0 }}>{item.work_title}</Typography>
+                <Typography sx={{ mb: 0 }}>{t(item.work_title)}</Typography>
               </Grid>
             </Grid>
           </Grid>

@@ -13,9 +13,26 @@ body {
   color: #fff;
 }
 
+.links{
+  color: #fff
+}
+
+.linksRodape{
+  cursor: pointer;
+  color: #858585;
+}
+
+.linksRodape:hover{
+  color: #F55307
+}
+
 a {
   text-decoration: none;
   color: initial;
+}
+
+a:hover{
+  color: #eeee00
 }
 
 .menu-button {
