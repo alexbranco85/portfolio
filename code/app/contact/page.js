@@ -8,11 +8,6 @@ const Home = () => {
 
   const { t } = useTranslation();
 
-  useEffect(() => {
-    console.log('t', t)
-
-  }, [])
-
   return (
     <Grid container sx={{ backgroundImage: 'url("bg-home.png")', backgroundPosition: 'center', backgroundSize: 'cover', height: '100vh', px: { xs: 5, sm: 20 }, alignItems: 'center' }}>
       <Grid item lg={6} md={6} sm={12} xs={12}>

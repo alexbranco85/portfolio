@@ -51,8 +51,8 @@ const PanelHome = () => {
         </Grid>
         <Grid item sm={12}>
           {works.length > 0 && (
-            works.map((item) => (
-              <Grid container spacing={1} sx={{ alignItems: 'center', pt: 1 }}>
+            works.map((item, index) => (
+              <Grid container key={index} spacing={1} sx={{ alignItems: 'center', pt: 1 }}>
                 <Grid item sm={8}>
                   <Typography variant="body2" sx={{ mt: 0 }}>{item.work_title}</Typography>
                 </Grid>

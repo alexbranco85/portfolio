@@ -33,7 +33,6 @@ const JobSingle = () => {
       .then(data => {
         setWork(data.data);
         const arrImages = data.data.image.filter(item => item.featured != 1);
-        console.log('arrImages', arrImages)
         setImages(arrImages);
       }).finally(() => setLoading(false))
   }
@@ -55,8 +54,8 @@ const JobSingle = () => {
         </Grid>
         <Grid item lg={8} md={12} sm={12} xs={12}>
           <Grid container spacing={0}>
-            {images.map(item => (
-              <Grid lg={3} md={4} sm={6} xs={12}>
+            {images.map((item, index) => (
+              <Grid key={index} lg={3} md={4} sm={6} xs={12}>
                 <img src={`${backendApi}images/${item.name}`} width={'100%'} />
               </Grid>
             ))}

@@ -216,7 +216,7 @@ const InsertWork = () => {
         <Grid item sm={12}>
           <Grid container>
             {dataImages.length > 0 ? dataImages.map((item, index) => (
-              <Grid item sm={2}>
+              <Grid item key={index} sm={2}>
                 <img src={item.tempURL} width={'100%'} onClick={() => removeImg(item, index)} />
               </Grid>
             )) : ''}
