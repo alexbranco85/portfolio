@@ -2,9 +2,10 @@
 
 import { useEffect, useState } from "react";
 import backendApi from "../../api/api";
-import { Box, Checkbox, FormControlLabel, Grid, Typography } from "@mui/material";
+import { Box, Button, Checkbox, FormControlLabel, Grid, Typography } from "@mui/material";
 import { useRouter } from "next/navigation";
 import { useTranslation } from "react-i18next";
+
 
 const ShowWorks = () => {
 
@@ -36,7 +37,7 @@ const ShowWorks = () => {
 
   return (
     <>
-      <Grid container sx={{ minHeight: '100%', backgroundColor: '#1a1a1a', alignContent: 'flex-start' }}>
+      <Grid container sx={{ minHeight: '100%', backgroundColor: '#1a1a1a', alignContent: 'flex-start', pb: { xs: 3, sm: 0, lg: 0, md: 0 }, }}>
         {works?.length > 0 && works.map((item, index) =>
           <Grid item lg={3} md={6} sm={6} xs={12} key={index} onClick={() => router.replace(`/jobs/${item.id_work}`)} sx={{ cursor: 'pointer', backgroundColor: '#000' }}>
             <Grid container spacing={0}>
@@ -55,6 +56,9 @@ const ShowWorks = () => {
           </Grid>
         )
         }
+        <Grid sm={12} xs={12} sx={{ display: { lg: 'none', md: 'none' }, my: 3, px: 2 }}>
+          <Button variant="outlined" fullWidth href={"/contact/"}>Entre em contato!</Button>
+        </Grid>
       </Grid >
     </>
   )

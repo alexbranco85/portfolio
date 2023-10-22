@@ -46,28 +46,30 @@ const JobSingle = () => {
       <Grid container sx={{
         minHeight: '100%',
         pl: { xs: 6, sm: 10, md: 20, lg: 20 },
-        pr: { xs: 6 , sm: 10, md: 20, lg: 20 },
+        pr: { xs: 6, sm: 10, md: 20, lg: 20 },
         py: 5,
         backgroundColor: '#1a1a1a'
       }}>
-      <Grid item sm={12}>
-        <Typography variant="subtitle1" sx={{ fontSize: { xs: '36px' } }}>{t(work?.work_title)}</Typography>
-        <Divider />
-      </Grid>
-      <Grid item lg={4} md={12} sm={12} xs={12}>
-        <Button onClick={() => router.replace('/jobs')} variant="outlined">{t('Back')}</Button>
-        <Typography sx={{ '& p': { marginBottom: 0, marginTop: 1 } }} dangerouslySetInnerHTML={{ __html: t(work?.work_description) }} />
-      </Grid>
-      <Grid item lg={8} md={12} sm={12} xs={12}>
-        <Grid container spacing={0}>
-          {images.map((item, index) => (
-            <Grid key={index} lg={3} md={4} sm={6} xs={12}>
-              <img src={`${backendApi}images/${item.name}`} width={'100%'} />
-            </Grid>
-          ))}
+        <Grid item sm={12}>
+          <Typography variant="subtitle1" sx={{ fontSize: '36px' }}>{t(work?.work_title)}</Typography>
+          <Divider />
+        </Grid>
+        <Grid item lg={4} md={12} sm={12} xs={12} sx={{ mt: 2 }}>
+          <Button onClick={() => router.replace('/jobs')} variant="outlined">{t('Back')}</Button>
+        </Grid>
+        <Grid item lg={4} md={12} sm={12} xs={12}>
+          <Typography sx={{ '& p': { marginBottom: 0, marginTop: 1 } }} dangerouslySetInnerHTML={{ __html: t(work?.work_description) }} />
+        </Grid>
+        <Grid item lg={8} md={12} sm={12} xs={12}>
+          <Grid container spacing={0}>
+            {images.map((item, index) => (
+              <Grid key={index} lg={3} md={4} sm={6} xs={12}>
+                <img src={`${backendApi}images/${item.name}`} width={'100%'} />
+              </Grid>
+            ))}
+          </Grid>
         </Grid>
       </Grid>
-    </Grid>
     </DefaultLoading >
   )
 }

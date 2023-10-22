@@ -12,13 +12,24 @@ const About = () => {
 
   return (
     <Grid container sx={{
-      alignContent: 'flex-start',
-      height: 'calc(100vh - 37.5px)',
+      minHeight: '100%',
+      backgroundColor: '#1a1a1a',
+      alignContent:
+        'flex-start',
       py: 10,
       pl: { xs: 6, sm: 10, md: 20, lg: 20 },
       pr: { xs: 6, sm: 10, md: 20, lg: 20 },
-      alignItems: 'center'
+      pb: { xs: 5 },
     }}>
+
+      {/* <Grid container sx={{
+        alignContent: 'flex-start',
+        height: 'calc(100vh - 37.5px)',
+        py: 10,
+        pl: { xs: 6, sm: 10, md: 20, lg: 20 },
+        pr: { xs: 6, sm: 10, md: 20, lg: 20 },
+        pb: { xs: 50 },
+      }}> */}
       <Grid item lg={6} md={6} sm={12} xs={12}>
         <Typography variant="body1">{t('I have a solid background in Advertising and Marketing, which provides me with a unique perspective when it comes to creating engaging and effective digital experiences.')}</Typography>
         <Typography variant="body1">{t('My skill set includes expertise in various areas, such as:')}</Typography>
