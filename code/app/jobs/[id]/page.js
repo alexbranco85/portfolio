@@ -43,7 +43,8 @@ const JobSingle = () => {
 
   return (
     <DefaultLoading isLoading={loading}>
-      <Grid container spacing={4} sx={{ px: { xs: 10, sm: 10, md: 20, lg: 20 }, py: 5, cursor: 'pointer', backgroundColor: 'rgb(20, 20, 20)', height: 'calc(100vh - 37.5px)', mt: 0 }}>
+      <Grid container spacing={4} sx={{ px: { xs: 10, sm: 10, md: 20, lg: 20 }, position: 'fixed',
+    overflowX: 'auto', py: 5, cursor: 'pointer', backgroundColor: 'rgb(20, 20, 20)', height: 'calc(100vh - 37.5px)', mt: 0 }}>
         <Grid item sm={12}>
           <Typography variant="subtitle1">{t(work?.work_title)}</Typography>
           <Divider />

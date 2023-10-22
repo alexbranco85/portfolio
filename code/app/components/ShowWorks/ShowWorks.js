@@ -36,18 +36,20 @@ const ShowWorks = () => {
 
   return (
     <>
-    <Grid container sx={{
-      backgroundColor: 'rgb(20, 20, 20)',
-      alignContent: 'flex-start',
-      overflowX: 'auto',
-      height: 'calc(100vh - 37.5px)',
-      pl: '20px',
-      alignItems: 'center', 
-      '& .categorias': { display: 'none' },
-      '& :hover .categorias': { display: 'flex' },
-      '& :hover .workImg': {opacity: 0.1} 
+      <Grid container sx={{
+        backgroundColor: 'rgb(20, 20, 20)',
+        alignContent: 'flex-start',
+        overflowX: 'auto',
+        height: 'calc(100vh - 37.5px)',
+        pl: '20px',
+        alignItems: 'center',
+        position: 'fixed',
+        overflowX: 'auto',
+        '& .categorias': { display: 'none' },
+        '& :hover .categorias': { display: 'flex' },
+        '& :hover .workImg': { opacity: 0.1 }
       }}>
-      {/* <Grid container sx={{ cursor: 'pointer', pl: '20px', }}> */}
+        {/* <Grid container sx={{ cursor: 'pointer', pl: '20px', }}> */}
         {works?.length > 0 && works.map((item, index) =>
           <Grid item lg={3} md={6} sm={6} xs={12} key={index} onClick={() => router.replace(`/jobs/${item.id_work}`)} sx={{ position: 'relative', cursor: 'pointer' }}>
             <Grid container spacing={0}>
@@ -63,7 +65,7 @@ const ShowWorks = () => {
                   zIndex: 1
                 }}>
                   {item.work_has_category.map((item, index) => (
-                    <Typography key={index} sx={{ backgroundColor: '#F55307', p: 0.5, fontSize: '15px', marginBottom: 0}}>{item.category.name}</Typography>
+                    <Typography key={index} sx={{ backgroundColor: '#F55307', p: 0.5, fontSize: '15px', marginBottom: 0 }}>{item.category.name}</Typography>
                   ))}
                 </Box>
                 <img className={'workImg'} src={handleFeaturedImage(item)} width={'100%'} />
