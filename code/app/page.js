@@ -9,7 +9,7 @@ const Home = () => {
   const { t } = useTranslation();
 
   return (
-    <Grid container sx={{ height: '100vh', px: { xs: 10, sm: 20 }, alignItems: 'center' }}>
+    <Grid container sx={{ height: 'calc(100vh - 37.5px)', px: { xs: 10, sm: 20 }, alignItems: 'center' }}>
       <Grid item lg={6} md={6} sm={12} xs={12}>
         <Typography variant="subtitle1">{t("Hello,")}</Typography>
         <Typography variant="body1">{t("Thank you for visiting my portfolio website. I am passionate about design and coding, and I'm excited to showcase my work and skills to you.")}</Typography>
