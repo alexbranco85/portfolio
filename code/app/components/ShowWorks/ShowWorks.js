@@ -5,6 +5,7 @@ import backendApi from "../../api/api";
 import { Box, Checkbox, FormControlLabel, Grid, Typography } from "@mui/material";
 import { useRouter } from "next/navigation";
 import { useTranslation } from "react-i18next";
+import Image from "next/image";
 
 const ShowWorks = () => {
 
@@ -37,40 +38,23 @@ const ShowWorks = () => {
   return (
     <>
       <Grid container sx={{
-        backgroundColor: 'rgb(20, 20, 20)',
-        height: '100%',
-        maxHeight: 'calc(100vh - 37.5px)',
-        position: 'fixed',
-        overflowX: 'auto'
+        minHeight: '100%',
+        backgroundColor: '#1a1a1a'
       }}>
+        {/* <Grid container spacing={0}> */}
         {/* <Grid container sx={{ cursor: 'pointer', pl: '20px', }}> */}
         {works?.length > 0 && works.map((item, index) =>
-          <Grid item lg={3} md={6} sm={6} xs={12} key={index} onClick={() => router.replace(`/jobs/${item.id_work}`)} sx={{ position: 'relative', cursor: 'pointer' }}>
+          <Grid item lg={3} md={6} sm={6} xs={12} key={index} onClick={() => router.replace(`/jobs/${item.id_work}`)} sx={{ cursor: 'pointer', backgroundColor: '#000' }}>
             <Grid container spacing={0}>
-              <Grid item sm={12} alignItems={'center'} alignContent={'center'} justifyContent={'center'} display={'flex'}>
-                <Box className='categorias' sx={{
-                  position: 'absolute',
-                  width: '100%',
-                  textAlign: 'center',
-                  display: 'flex',
-                  flexDirection: 'row',
-                  justifyContent: 'center',
-                  gap: 1,
-                  zIndex: 1
-                }}>
+              <Grid item sm={12}>
+                <img className={'workImg'} src={handleFeaturedImage(item)} width={'100%'} />
+                <Box sx={{ display: 'flex', gap: 1, position: 'absolute', px: '20px', mt: '-35px' }}>
                   {item.work_has_category.map((item, index) => (
-                    <Typography key={index} sx={{ backgroundColor: '#F55307', p: 0.5, fontSize: '15px', marginBottom: 0 }}>{item.category.name}</Typography>
+                    <Typography key={index} sx={{ backgroundColor: '#F55307', p: 0.5, fontSize: '11px', marginBottom: 0 }}>{item.category.name}</Typography>
                   ))}
                 </Box>
-                <img className={'workImg'} src={handleFeaturedImage(item)} width={'100%'} />
               </Grid>
-            </Grid>
-            <Grid container spacing={0}>
-              <Grid item sm={12} xs={12} sx={{
-                backgroundColor: '#000',
-                padding: '20px',
-                mt: '-5px'
-              }}>
+              <Grid item sm={12} xs={12} sx={{ py: '10px', px: '20px' }}>
                 <Typography sx={{ mb: 0 }}>{t(item.work_title)}</Typography>
               </Grid>
             </Grid>

@@ -44,13 +44,11 @@ const JobSingle = () => {
   return (
     <DefaultLoading isLoading={loading}>
       <Grid container sx={{
-        backgroundColor: 'rgb(20, 20, 20)',
-        height: '100%',
-        px: { xs: 10, sm: 10, md: 20, lg: 20 },
+        minHeight: '100%',
+        pl: { xs: 10, sm: 10, md: 20, lg: 20 },
+        pr: { xs: 5, sm: 10, md: 20, lg: 20 },
         py: 5,
-        maxHeight: 'calc(100vh - 37.5px)',
-        position: 'fixed',
-        overflowX: 'auto'
+        backgroundColor: '#1a1a1a'
       }}>
       <Grid item sm={12}>
         <Typography variant="subtitle1" sx={{ fontSize: { xs: '36px' } }}>{t(work?.work_title)}</Typography>
