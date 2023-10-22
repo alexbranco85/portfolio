@@ -9,6 +9,9 @@ import { I18nextProvider } from 'react-i18next'
 import i18n from './i18n'
 
 export default function RootLayout({ children }) {
+
+  console.log('children', children)
+
   return (
     <html lang="en">
       <body>
@@ -24,8 +27,11 @@ export default function RootLayout({ children }) {
                 boxSizing: 'border-box',
                 height: 'calc(100vh - 37.5px)',
                 pl: '20px',
-                overflow: 'auto'
-              }}>{children}</Box>
+                overflow: 'auto',
+                alignContent: 'flex-start'
+              }}>
+                {children}
+              </Box>
               <Footer />
             </NextAuthSessionProvider>
           </I18nextProvider>

@@ -11,7 +11,14 @@ const About = () => {
   const boxStyle = { borderRadius: 50, backgroundColor: '#ffffff80', border: '2px solid #ffffff30', p: 0, pl: 0, transition: 'transform .2s', '&:hover': { transform: 'scale(1.2)', backgroundColor: '#ffffffcc', borderColor: '#F55307' } };
 
   return (
-    <Grid container sx={{ alignContent: 'flex-start', height: 'calc(100vh - 50px)', px: { xs: 10, sm: 20 }, py: 10, alignItems: 'center' }}>
+    <Grid container sx={{
+      alignContent: 'flex-start',
+      height: 'calc(100vh - 37.5px)',
+      py: 10,
+      pl: { xs: 10, sm: 10, md: 20, lg: 20 },
+      pr: { xs: 5, sm: 10, md: 20, lg: 20 },
+      alignItems: 'center'
+    }}>
       <Grid item lg={6} md={6} sm={12} xs={12}>
         <Typography variant="body1">{t('I have a solid background in Advertising and Marketing, which provides me with a unique perspective when it comes to creating engaging and effective digital experiences.')}</Typography>
         <Typography variant="body1">{t('My skill set includes expertise in various areas, such as:')}</Typography>
