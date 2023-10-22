@@ -38,16 +38,10 @@ const ShowWorks = () => {
     <>
       <Grid container sx={{
         backgroundColor: 'rgb(20, 20, 20)',
-        alignContent: 'flex-start',
-        overflowX: 'auto',
-        height: 'calc(100vh - 37.5px)',
-        pl: '20px',
-        alignItems: 'center',
+        height: '100%',
+        maxHeight: 'calc(100vh - 37.5px)',
         position: 'fixed',
-        overflowX: 'auto',
-        '& .categorias': { display: 'none' },
-        '& :hover .categorias': { display: 'flex' },
-        '& :hover .workImg': { opacity: 0.1 }
+        overflowX: 'auto'
       }}>
         {/* <Grid container sx={{ cursor: 'pointer', pl: '20px', }}> */}
         {works?.length > 0 && works.map((item, index) =>

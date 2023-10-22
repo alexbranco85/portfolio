@@ -43,27 +43,34 @@ const JobSingle = () => {
 
   return (
     <DefaultLoading isLoading={loading}>
-      <Grid container spacing={4} sx={{ px: { xs: 10, sm: 10, md: 20, lg: 20 }, position: 'fixed',
-    overflowX: 'auto', py: 5, cursor: 'pointer', backgroundColor: 'rgb(20, 20, 20)', height: 'calc(100vh - 37.5px)', mt: 0 }}>
-        <Grid item sm={12}>
-          <Typography variant="subtitle1">{t(work?.work_title)}</Typography>
-          <Divider />
-        </Grid>
-        <Grid item lg={4} md={12} sm={12} xs={12}>
-          <Button onClick={() => router.replace('/jobs')} variant="outlined">{t('Back')}</Button>
-          <Typography sx={{ '& p': { marginBottom: 0, marginTop: 1 } }} dangerouslySetInnerHTML={{ __html: t(work?.work_description) }} />
-        </Grid>
-        <Grid item lg={8} md={12} sm={12} xs={12}>
-          <Grid container spacing={0}>
-            {images.map((item, index) => (
-              <Grid key={index} lg={3} md={4} sm={6} xs={12}>
-                <img src={`${backendApi}images/${item.name}`} width={'100%'} />
-              </Grid>
-            ))}
-          </Grid>
+      <Grid container sx={{
+        backgroundColor: 'rgb(20, 20, 20)',
+        height: '100%',
+        px: { xs: 10, sm: 10, md: 20, lg: 20 },
+        py: 5,
+        maxHeight: 'calc(100vh - 37.5px)',
+        position: 'fixed',
+        overflowX: 'auto'
+      }}>
+      <Grid item sm={12}>
+        <Typography variant="subtitle1" sx={{ fontSize: { xs: '36px' } }}>{t(work?.work_title)}</Typography>
+        <Divider />
+      </Grid>
+      <Grid item lg={4} md={12} sm={12} xs={12}>
+        <Button onClick={() => router.replace('/jobs')} variant="outlined">{t('Back')}</Button>
+        <Typography sx={{ '& p': { marginBottom: 0, marginTop: 1 } }} dangerouslySetInnerHTML={{ __html: t(work?.work_description) }} />
+      </Grid>
+      <Grid item lg={8} md={12} sm={12} xs={12}>
+        <Grid container spacing={0}>
+          {images.map((item, index) => (
+            <Grid key={index} lg={3} md={4} sm={6} xs={12}>
+              <img src={`${backendApi}images/${item.name}`} width={'100%'} />
+            </Grid>
+          ))}
         </Grid>
       </Grid>
-    </DefaultLoading>
+    </Grid>
+    </DefaultLoading >
   )
 }
 

@@ -16,7 +16,16 @@ export default function RootLayout({ children }) {
           <I18nextProvider i18n={i18n} defaultNS={'translation'}>
             <NextAuthSessionProvider>
               <Header />
-              <Box sx={{ backgroundImage: 'url("bg-home.png")', backgroundPosition: 'center', backgroundSize: 'cover', width: '100vw', boxSizing: 'border-box', height: 'calc(100vh - 37.5px)', overflow: 'auto' }}>{children}</Box>
+              <Box sx={{
+                backgroundImage: 'url("bg-home.png")',
+                backgroundPosition: 'center',
+                backgroundSize: 'cover',
+                width: '100vw',
+                boxSizing: 'border-box',
+                height: 'calc(100vh - 37.5px)',
+                pl: '20px',
+                overflow: 'auto'
+              }}>{children}</Box>
               <Footer />
             </NextAuthSessionProvider>
           </I18nextProvider>
