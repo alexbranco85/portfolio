@@ -46,6 +46,10 @@ a:hover{
   border: 2px solid #eeee00;
 }
 
+@media (max-width: 720px) {
+  .menu-button { padding: 10px; top: 0; left: 0; }
+}
+
 .menu-button:hover {
   background-color: #242424;
   color: #fff;

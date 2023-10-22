@@ -45,8 +45,8 @@ const JobSingle = () => {
     <DefaultLoading isLoading={loading}>
       <Grid container sx={{
         minHeight: '100%',
-        pl: { xs: 10, sm: 10, md: 20, lg: 20 },
-        pr: { xs: 5, sm: 10, md: 20, lg: 20 },
+        pl: { xs: 6, sm: 10, md: 20, lg: 20 },
+        pr: { xs: 6 , sm: 10, md: 20, lg: 20 },
         py: 5,
         backgroundColor: '#1a1a1a'
       }}>

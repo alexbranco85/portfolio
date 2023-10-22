@@ -17,8 +17,8 @@ const Home = () => {
       </Head>
       <Grid container sx={{
         height: 'calc(100vh - 37.5px)',
-        pl: { xs: 10, sm: 10, md: 20, lg: 20 },
-        pr: { xs: 5, sm: 10, md: 20, lg: 20 },
+        pl: { xs: 6, sm: 10, md: 20, lg: 20 },
+        pr: { xs: 6, sm: 10, md: 20, lg: 20 },
         alignItems: 'center'
       }}>
         <Grid item lg={6} md={6} sm={12} xs={12}>

@@ -36,7 +36,7 @@ const ShowWorks = () => {
 
   return (
     <>
-      <Grid container sx={{ minHeight: '100%', backgroundColor: '#1a1a1a' }}>
+      <Grid container sx={{ minHeight: '100%', backgroundColor: '#1a1a1a', alignContent: 'flex-start' }}>
         {works?.length > 0 && works.map((item, index) =>
           <Grid item lg={3} md={6} sm={6} xs={12} key={index} onClick={() => router.replace(`/jobs/${item.id_work}`)} sx={{ cursor: 'pointer', backgroundColor: '#000' }}>
             <Grid container spacing={0}>

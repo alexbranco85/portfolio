@@ -18,10 +18,17 @@ const Header = () => {
     menu.classList.toggle('menu-animated')
   }
 
+  const hideMenu = () => {
+    let menu = document.getElementsByClassName("menu")[0];
+    let menuButton = document.getElementsByClassName("menu-button")[0];
+    menuButton.classList.toggle('menu-button-activate')
+    menu.classList.toggle('menu-animated')
+  }
+
   return (
     <Box maxWidth='xl' sx={{ textAlign: 'left', zIndex: 2, position: 'fixed', top: 0 }}>
       <Box>
-        <IconButton onClick={showMenu} size="large" className="menu-button" sx={{ borderRadius: 0, p: 2 }}>
+        <IconButton onClick={showMenu} className="menu-button" sx={{ p: { xs: '10px' }, borderRadius: 0, p: 2 }}>
           <span className="menu-line"></span>
           <span className="menu-line"></span>
           <span className="menu-line"></span>
@@ -30,7 +37,7 @@ const Header = () => {
       <Box className="menu">
         <Box className="menu-container">
           {MenuPages.map(item => (
-            <Link href={item.link} key={item.link}><Typography className="menu-item">{item.name}</Typography></Link>
+            <Link href={item.link} key={item.link} onClick={hideMenu}><Typography className="menu-item">{item.name}</Typography></Link>
           ))}
         </Box>
       </Box>
