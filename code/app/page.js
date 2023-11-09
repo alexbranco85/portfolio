@@ -11,10 +11,6 @@ const Home = () => {
 
   return (
     <>
-      <Head>
-        <title>Alex Branco | Porfólio</title>
-        <meta name='description' content='Portfólio do desenvolvedor e designer Alex Branco.' />
-      </Head>
       <Grid container sx={{
         height: 'calc(100vh - 37.5px)',
         pl: { xs: 6, sm: 10, md: 20, lg: 20 },

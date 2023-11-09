@@ -14,6 +14,7 @@ const JobSingle = () => {
   const [work, setWork] = useState();
   const [loading, setLoading] = useState(false);
   const [images, setImages] = useState([]);
+  const [featuredImage, setFeatured] = useState([]);
 
   const router = useRouter();
 
@@ -33,7 +34,11 @@ const JobSingle = () => {
       .then(data => {
         setWork(data.data);
         const arrImages = data.data.image.filter(item => item.featured != 1);
+        const arrFeatured = data.data.image.filter(item => item.featured == 1);
+        console.log('arrFeatured', arrFeatured)
+        setFeatured(arrFeatured);
         setImages(arrImages);
+        console.log('featured', featuredImage)
       }).finally(() => setLoading(false))
   }
 
@@ -43,7 +48,7 @@ const JobSingle = () => {
 
   return (
     <DefaultLoading isLoading={loading}>
-      <Grid container sx={{
+      <Grid container spacing={2} sx={{
         minHeight: '100%',
         pl: { xs: 6, sm: 10, md: 20, lg: 20 },
         pr: { xs: 6, sm: 10, md: 20, lg: 20 },
@@ -56,19 +61,35 @@ const JobSingle = () => {
         </Grid>
         <Grid item lg={4} md={12} sm={12} xs={12} sx={{ mt: 2 }}>
           <Button onClick={() => router.replace('/jobs')} variant="outlined">{t('Back')}</Button>
-        </Grid>
-        <Grid item lg={4} md={12} sm={12} xs={12}>
           <Typography sx={{ '& p': { marginBottom: 0, marginTop: 1 } }} dangerouslySetInnerHTML={{ __html: t(work?.work_description) }} />
         </Grid>
-        <Grid item lg={8} md={12} sm={12} xs={12}>
-          <Grid container spacing={0}>
+
+        {images?.length > 1 && (
+          <Grid item lg={8} md={12} sm={12} xs={12}>
+            <Grid container spacing={0}>
+              {images.map((item, index) => (
+                <Grid key={index} lg={3} md={4} sm={6} xs={12}>
+                  <img src={`${backendApi}images/${item.name}`} width={'100%'} />
+                </Grid>
+              ))}
+            </Grid>
+          </Grid>
+        )}
+
+        {images?.length == 1 && (
+          <Grid item lg={8} md={12} sm={12} xs={12}>
             {images.map((item, index) => (
-              <Grid key={index} lg={3} md={4} sm={6} xs={12}>
-                <img src={`${backendApi}images/${item.name}`} width={'100%'} />
-              </Grid>
+              <img src={`${backendApi}images/${item.name}`} width={'100%'} />
             ))}
           </Grid>
-        </Grid>
+        )}
+
+        {!images?.length && (
+          <Grid item lg={8} md={8} sm={12} xs={12}>
+            <img src={`${backendApi}images/${featuredImage[0]?.name}`} width={'100%'} />
+          </Grid>
+        )}
+
       </Grid>
     </DefaultLoading >
   )

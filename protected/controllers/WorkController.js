@@ -28,6 +28,9 @@ const WorkController = {
             attributes: ['id_image', 'name', 'featured'],
           },
         ],
+        order: [
+          ['id_work', 'DESC'],
+        ],
       });
 
       res.status(200).json({ data: works, success: true });
@@ -157,7 +160,7 @@ const WorkController = {
 
       if (changeFeatured) {
 
-        
+
 
         const oldFeatured = await Image.findOne({
           where: {

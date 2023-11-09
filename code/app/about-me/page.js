@@ -19,7 +19,6 @@ const About = () => {
       py: 10,
       pl: { xs: 6, sm: 10, md: 20, lg: 20 },
       pr: { xs: 6, sm: 10, md: 20, lg: 20 },
-      pb: { xs: 5 },
     }}>
 
       {/* <Grid container sx={{

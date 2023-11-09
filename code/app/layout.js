@@ -14,6 +14,13 @@ export default function RootLayout({ children }) {
 
   return (
     <html lang="en">
+      <head>
+        <title>Alex Branco | Portfólio</title>
+        <meta name="author" content="Alex Branco" />
+        <meta
+          name="description"
+          content="Portfólio do designer e desenvolvedor Front-End Alex Branco." />
+      </head>
       <body>
         <ThemeProvider theme={theme}>
           <I18nextProvider i18n={i18n} defaultNS={'translation'}>

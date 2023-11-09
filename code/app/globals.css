@@ -28,7 +28,7 @@ body {
 
 a {
   text-decoration: none;
-  color: initial;
+  color: #F55307;
 }
 
 a:hover{
@@ -82,10 +82,12 @@ a:hover{
 
 .menu-item {
   font-size: 24px;
+  color: #000;
 }
 
 .menu-item:hover {
   font-size: 24px;
+  color:#eeee00;
   font-weight: bolder;
   cursor: pointer;
 }
