@@ -78,9 +78,7 @@ const JobSingle = () => {
 
         {images?.length == 1 && (
           <Grid item lg={8} md={12} sm={12} xs={12}>
-            {images.map((item, index) => (
-              <img src={`${backendApi}images/${item.name}`} width={'100%'} />
-            ))}
+            <img src={`${backendApi}images/${images[0]?.name}`} width={'100%'} />
           </Grid>
         )}
 
