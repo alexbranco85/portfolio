@@ -6,8 +6,9 @@ import { usePathname } from "next/navigation";
 import DefaultLoading from "../../components/Loading";
 import { Router } from "next/router";
 import { useTranslation } from "react-i18next";
+import Carousel from "react-material-ui-carousel";
 
-const { Typography, Grid, Divider, Button } = require("@mui/material")
+const { Typography, Grid, Divider, Button, Paper } = require("@mui/material")
 
 const JobSingle = () => {
 
@@ -35,16 +36,25 @@ const JobSingle = () => {
         setWork(data.data);
         const arrImages = data.data.image.filter(item => item.featured != 1);
         const arrFeatured = data.data.image.filter(item => item.featured == 1);
-        console.log('arrFeatured', arrFeatured)
+        const mapImages = arrImages.map(item => {
+          return {
+            ...item,
+            url: `<img src="${item.name}" />`
+          }
+        })
         setFeatured(arrFeatured);
-        setImages(arrImages);
-        console.log('featured', featuredImage)
+        setImages(mapImages);
+
       }).finally(() => setLoading(false))
   }
 
   useEffect(() => {
     getWork();
   }, [])
+
+  useEffect(() => {
+    console.log('images', images)
+  }, [images])
 
   return (
     <DefaultLoading isLoading={loading}>
@@ -59,12 +69,22 @@ const JobSingle = () => {
           <Typography variant="subtitle1" sx={{ fontSize: '36px' }}>{t(work?.work_title)}</Typography>
           <Divider />
         </Grid>
-        <Grid item lg={4} md={12} sm={12} xs={12} sx={{ mt: 2 }}>
+        <Grid item lg={6} md={6} sm={12} xs={12} sx={{ mt: 2 }}>
           <Button onClick={() => router.replace('/jobs')} variant="outlined">{t('Back')}</Button>
           <Typography sx={{ '& p': { marginBottom: 0, marginTop: 1 } }} dangerouslySetInnerHTML={{ __html: t(work?.work_description) }} />
         </Grid>
-
+        <Grid item lg={6} md={6} sm={12} xs={12}>
+        
         {images?.length > 1 && (
+          <Carousel>
+            {images.map((item, i) => (
+              <img key={i} src={`${backendApi}images/${item.name}`} style={{ width: '100%' }} />
+            ))}
+          </Carousel>
+        )}
+        </Grid>
+
+        {/* {images?.length > 1 && (
           <Grid item lg={8} md={12} sm={12} xs={12}>
             <Grid container spacing={0}>
               {images.map((item, index) => (
@@ -74,16 +94,16 @@ const JobSingle = () => {
               ))}
             </Grid>
           </Grid>
-        )}
+        )} */}
 
         {images?.length == 1 && (
-          <Grid item lg={8} md={12} sm={12} xs={12}>
+          <Grid item lg={6} md={6} sm={12} xs={12}>
             <img src={`${backendApi}images/${images[0]?.name}`} width={'100%'} />
           </Grid>
         )}
 
         {!images?.length && (
-          <Grid item lg={8} md={8} sm={12} xs={12}>
+          <Grid item lg={6} md={6} sm={12} xs={12}>
             <img src={`${backendApi}images/${featuredImage[0]?.name}`} width={'100%'} />
           </Grid>
         )}

@@ -56,7 +56,7 @@ const ShowWorks = () => {
           </Grid>
         )
         }
-        <Grid sm={12} xs={12} sx={{ display: { lg: 'none', md: 'none' }, my: 3, px: 2 }}>
+        <Grid item sm={12} xs={12} sx={{ display: { lg: 'none', md: 'none' }, my: 3, px: 2 }}>
           <Button variant="outlined" fullWidth href={"/contact/"}>Entre em contato!</Button>
         </Grid>
       </Grid >

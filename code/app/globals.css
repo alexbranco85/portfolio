@@ -13,16 +13,16 @@ body {
   color: #fff;
 }
 
-.links{
+.links {
   color: #fff
 }
 
-.linksRodape{
+.linksRodape {
   cursor: pointer;
   color: #858585;
 }
 
-.linksRodape:hover{
+.linksRodape:hover {
   color: #F55307
 }
 
@@ -31,7 +31,7 @@ a {
   color: #F55307;
 }
 
-a:hover{
+a:hover {
   color: #eeee00
 }
 
@@ -47,7 +47,11 @@ a:hover{
 }
 
 @media (max-width: 720px) {
-  .menu-button { padding: 10px; top: 0; left: 0; }
+  .menu-button {
+    padding: 10px;
+    top: 0;
+    left: 0;
+  }
 }
 
 .menu-button:hover {
@@ -87,7 +91,7 @@ a:hover{
 
 .menu-item:hover {
   font-size: 24px;
-  color:#eeee00;
+  color: #eeee00;
   font-weight: bolder;
   cursor: pointer;
 }
@@ -130,4 +134,15 @@ a:hover{
 /* 3. line slides up to midle and rotates 45deg */
 .menu-button-activate .menu-line:nth-child(3) {
   transform: translateY(-8px) rotate(45deg);
+}
+
+@media (min-width: 720px) {
+  .workImg {
+    filter: grayscale(65%);
+    transition: linear 0.5s;
+  }
+}
+
+.workImg:hover {
+  filter: grayscale(0%);
 }
