@@ -69,20 +69,23 @@ const JobSingle = () => {
           <Typography variant="subtitle1" sx={{ fontSize: '36px' }}>{t(work?.work_title)}</Typography>
           <Divider />
         </Grid>
+
+
         <Grid item lg={6} md={6} sm={12} xs={12} sx={{ mt: 2 }}>
           <Button onClick={() => router.replace('/jobs')} variant="outlined">{t('Back')}</Button>
           <Typography sx={{ '& p': { marginBottom: 0, marginTop: 1 } }} dangerouslySetInnerHTML={{ __html: t(work?.work_description) }} />
         </Grid>
-        <Grid item lg={6} md={6} sm={12} xs={12}>
-        
+
+
         {images?.length > 1 && (
-          <Carousel>
-            {images.map((item, i) => (
-              <img key={i} src={`${backendApi}images/${item.name}`} style={{ width: '100%' }} />
-            ))}
-          </Carousel>
+          <Grid item lg={6} md={6} sm={12} xs={12}>
+            <Carousel>
+              {images.map((item, i) => (
+                <img key={i} src={`${backendApi}images/${item.name}`} style={{ width: '100%' }} />
+              ))}
+            </Carousel>
+          </Grid>
         )}
-        </Grid>
 
         {/* {images?.length > 1 && (
           <Grid item lg={8} md={12} sm={12} xs={12}>
