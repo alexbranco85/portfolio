@@ -43,7 +43,8 @@ const InsertWork = () => {
     defaultValues: {
       "work_title": "",
       "work_description": "",
-      "category": []
+      "work_objective": "",
+      "category": [],
     }
   });
 
@@ -57,7 +58,7 @@ const InsertWork = () => {
       })
       .then(data => {
         const image = data?.data.image?.find(item => item.featured == 1);
-        if(image){
+        if (image) {
           setChangeFeatured(image.id_image);
         }
         setWorkEdit(data.data);
@@ -129,7 +130,6 @@ const InsertWork = () => {
       body: formData,
       'Content-Type': 'multipart/form-data'
     }).then(async res => {
-      console.log('res', res)
       let resJson = await res.json();
       if (resJson.success) {
         toast.success('Work saved!', {
@@ -168,7 +168,7 @@ const InsertWork = () => {
       categoriesToDelete: categoriesToDelete,
     }
 
-    if(changeFeatured){
+    if (changeFeatured) {
       textData = {
         ...textData,
         changeFeatured,
@@ -211,10 +211,6 @@ const InsertWork = () => {
     }
   }, [workEdit])
 
-  useEffect(() => {
-    console.log('watch', watch('work_description'))
-  }, [watch('work_description')])
-
   return (
     <form id="form-work" onSubmit={handleSubmit((e) => handleSubmitForm(e))}>
       <Grid container spacing={2} sx={{ px: 20, py: 5 }}>
@@ -240,9 +236,11 @@ const InsertWork = () => {
         </Grid>
         <Grid item sm={12}>
           <TextEditor
+            id='objective'
             name={'work_objective'}
             label={'Objetivos'}
             control={control}
+            setValue={setValue}
           />
         </Grid>
         <Grid item sm={12}>
@@ -309,7 +307,7 @@ const InsertWork = () => {
         <Grid item sm={12}>
           <Grid container spacing={2}>
             {showImages.length > 0 && showImages.map((image, index) => (
-              <Grid item sm={2} key={index} sx={{ position: 'relative', opacity: arrRemoveImages.includes(image.id_image) && 0.4, pointerEvents: arrRemoveImages.includes(image.id_image) && 'none'}}>
+              <Grid item sm={2} key={index} sx={{ position: 'relative', opacity: arrRemoveImages.includes(image.id_image) && 0.4, pointerEvents: arrRemoveImages.includes(image.id_image) && 'none' }}>
                 {image.featured == 1 && (
                   <Box sx={{ position: 'absolute', color: '#ffff00' }}><Star /></Box>
                 )}

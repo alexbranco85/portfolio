@@ -96,7 +96,7 @@ const JobSingle = () => {
           <Grid item xs={12} sm={12} sx={{ mt: 4 }}>
             <Button onClick={() => router.replace('/jobs')} variant="outlined">{t('Back')}</Button>
           </Grid>
-          {work.work_objective && (
+          {work?.work_objective && (
             <>
               <Grid item xs={12} sm={12} sx={{ mt: 4 }}>
                 <Typography variant="h2" className="custom-subtitle">{t("OBJECTIVES")}</Typography>
