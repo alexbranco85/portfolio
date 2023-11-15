@@ -9,8 +9,8 @@ const routes = require('./routes/index')
 app.use(express.json());
 
 app.use(cors(
-  // { origin: 'https://www.alexbranco.dev.br'}
-  ))
+  { origin: 'https://www.alexbranco.dev.br' }
+))
 
 app.use(routes)
 app.use('/images', express.static(path.resolve(__dirname, "images/uploads")));

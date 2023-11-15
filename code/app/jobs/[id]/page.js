@@ -68,9 +68,12 @@ const JobSingle = () => {
         <Grid item lg={6} md={6} sm={12} xs={12} sx={{ mt: 2 }}>
           <Grid item sm={12}>
             <Typography variant="h1" className="custom-subtitle">{t(work?.work_title)}</Typography>
-            <Divider sx={{ my: 3 }} />
           </Grid>
-          <Grid container spacing={4}>
+          <Grid container spacing={2} sx={{ mt: 2 }}>
+
+            <Grid item sm={12}>
+              <Divider />
+            </Grid>
 
             <Grid item xs={12} sm={2}>
               <Typography variant="h2" className="custom-subtitle">{t("YEAR")}</Typography>
@@ -88,25 +91,29 @@ const JobSingle = () => {
 
             </Grid>
 
+            <Grid item sm={12}>
+              <Divider />
+            </Grid>
+
+
           </Grid>
           <Grid item xs={12} sm={12} sx={{ mt: 4 }}>
             <Typography variant="h2" className="custom-subtitle">{t("DESCRIPTION")}</Typography>
             <Typography sx={{ '& p': { marginBottom: 0, marginTop: 1 } }} dangerouslySetInnerHTML={{ __html: t(work?.work_description) }} />
           </Grid>
-          <Grid item xs={12} sm={12} sx={{ mt: 4 }}>
-            <Button onClick={() => router.replace('/jobs')} variant="outlined">{t('Back')}</Button>
-          </Grid>
+
           {work?.work_objective && (
             <>
               <Grid item xs={12} sm={12} sx={{ mt: 4 }}>
                 <Typography variant="h2" className="custom-subtitle">{t("OBJECTIVES")}</Typography>
                 <Typography sx={{ '& p': { marginBottom: 0, marginTop: 1 } }} dangerouslySetInnerHTML={{ __html: t(work?.work_objective) }} />
               </Grid>
-              <Grid item xs={12} sm={12} sx={{ mt: 4 }}>
-                <Button onClick={() => router.replace('/jobs')} variant="outlined">{t('Back')}</Button>
-              </Grid>
             </>
           )}
+
+          <Grid item xs={12} sm={12} sx={{ mt: 4 }}>
+            <Button onClick={() => router.replace('/jobs')} variant="outlined">{t('Back')}</Button>
+          </Grid>
         </Grid>
 
         {images?.length > 1 && (

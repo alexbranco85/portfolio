@@ -226,6 +226,14 @@ const InsertWork = () => {
             fullWidth />
         </Grid>
         <Grid item sm={12}>
+          <InputText
+            name="work_year"
+            label="Ano"
+            variant="outlined"
+            control={control}
+            fullWidth />
+        </Grid>
+        <Grid item sm={12}>
           <TextEditor
             id='campo'
             name={'work_description'}
