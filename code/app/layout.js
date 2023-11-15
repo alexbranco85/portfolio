@@ -10,15 +10,13 @@ import i18n from './i18n'
 
 export default function RootLayout({ children }) {
 
-  console.log('children', children)
-
   return (
     <html lang="en">
       <head>
         <title>Alex Branco | Portfólio</title>
         <meta name="author" content="Alex Branco" />
         <meta
-          name="description"
+          name="Alex Branco | Portfólio"
           content="Portfólio do designer e desenvolvedor Front-End Alex Branco." />
       </head>
       <body>

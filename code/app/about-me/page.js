@@ -13,7 +13,7 @@ const About = () => {
   return (
     <Grid container sx={{
       minHeight: '100%',
-      backgroundColor: '#1a1a1a',
+      // backgroundColor: '#1a1a1a',
       alignContent:
         'flex-start',
       py: 10,
@@ -35,7 +35,7 @@ const About = () => {
       </Grid>
       <Grid container sx={{ pt: 4 }}>
         <Grid item lg={6} md={6} sm={12} xs={12}>
-          <Typography variant="h3">{t('Development')}:</Typography>
+          <Typography variant="h3" className="custom-subtitle">{t('Development')}:</Typography>
           <Divider sx={{ mb: 2 }} />
           <Grid container spacing={2}>
             <Grid item xs={6} sm={6} md={4} lg={2}>
@@ -94,7 +94,7 @@ const About = () => {
               </Box>
             </Grid>
           </Grid>
-          <Typography variant="h3" sx={{ mt: 4 }}>{t('Design & Prototype:')}</Typography>
+          <Typography variant="h3" className="custom-subtitle" sx={{ mt: 4 }}>{t('Design & Prototype:')}</Typography>
           <Divider />
           <Grid container spacing={2} sx={{ pt: 2 }}>
             <Grid item xs={6} sm={6} md={4} lg={2}>

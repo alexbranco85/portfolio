@@ -8,7 +8,7 @@ import { Router } from "next/router";
 import { useTranslation } from "react-i18next";
 import Carousel from "react-material-ui-carousel";
 
-const { Typography, Grid, Divider, Button, Paper } = require("@mui/material")
+const { Typography, Grid, Divider, Button, Paper, Box } = require("@mui/material")
 
 const JobSingle = () => {
 
@@ -52,30 +52,51 @@ const JobSingle = () => {
     getWork();
   }, [])
 
-  useEffect(() => {
-    console.log('images', images)
-  }, [images])
-
   return (
     <DefaultLoading isLoading={loading}>
       <Grid container spacing={2} sx={{
-        minHeight: '100%',
+        mt: 0,
+        height: 'calc(100vh - 37.5px)',
         pl: { xs: 6, sm: 10, md: 20, lg: 20 },
         pr: { xs: 6, sm: 10, md: 20, lg: 20 },
         py: 5,
-        backgroundColor: '#1a1a1a'
+        backgroundColor: '#1a1a1a',
+        display: 'flex',
+        alignContent: 'flex-start'
       }}>
-        <Grid item sm={12}>
-          <Typography variant="subtitle1" sx={{ fontSize: '36px' }}>{t(work?.work_title)}</Typography>
-          <Divider />
-        </Grid>
-
 
         <Grid item lg={6} md={6} sm={12} xs={12} sx={{ mt: 2 }}>
-          <Button onClick={() => router.replace('/jobs')} variant="outlined">{t('Back')}</Button>
-          <Typography sx={{ '& p': { marginBottom: 0, marginTop: 1 } }} dangerouslySetInnerHTML={{ __html: t(work?.work_description) }} />
-        </Grid>
+          <Grid item sm={12}>
+            <Typography variant="h1" className="custom-subtitle">{t(work?.work_title)}</Typography>
+            <Divider sx={{ my: 3 }} />
+          </Grid>
+          <Grid container spacing={4}>
 
+            <Grid item xs={12} sm={2}>
+              <Typography variant="h2" className="custom-subtitle">ANO</Typography>
+              <Typography sx={{ fontSize: '21px', color: '#fff' }}>2023</Typography>
+            </Grid>
+
+            <Grid item xs={12} sm={10}>
+              <Typography variant="h2" className="custom-subtitle">CATEGORIAS</Typography>
+
+              <Box sx={{ display: 'flex', gap: '5px' }}>
+                {work?.work_has_category.map((item, index) => (
+                  <Typography key={index} sx={{ backgroundColor: '#F55307', p: 0.5, fontSize: '12px', marginBottom: 0 }}>{item.category.name}</Typography>
+                ))}
+              </Box>
+
+            </Grid>
+            
+          </Grid>
+          <Grid item xs={12} sm={12} sx={{ mt: 4 }}>
+            <Typography variant="h2" className="custom-subtitle">DESCRIÇÃO</Typography>
+            <Typography sx={{ '& p': { marginBottom: 0, marginTop: 1 } }} dangerouslySetInnerHTML={{ __html: t(work?.work_description) }} />
+          </Grid>
+          <Grid item xs={12} sm={12} sx={{ mt: 4 }}>
+            <Button onClick={() => router.replace('/jobs')} variant="outlined">{t('Back')}</Button>
+          </Grid>
+        </Grid>
 
         {images?.length > 1 && (
           <Grid item lg={6} md={6} sm={12} xs={12}>

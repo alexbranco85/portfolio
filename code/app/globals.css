@@ -1,3 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@600&display=swap');
+
+.custom-subtitle{
+  font-family: 'Rajdhani', sans-serif;
+}
+
+h1{
+  font-size: 46px !important;
+  color: #eeee00;
+}
+
 .MuiOutlinedInput-input {
   color: #fff
 }
