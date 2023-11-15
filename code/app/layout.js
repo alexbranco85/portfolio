@@ -9,7 +9,7 @@ import { I18nextProvider } from 'react-i18next'
 import i18n from './i18n'
 
 export default function RootLayout({ children }) {
-
+  console.log('children', children)
   return (
     <html lang="en">
       <head>
@@ -25,16 +25,17 @@ export default function RootLayout({ children }) {
             <NextAuthSessionProvider>
               <Header />
               <Box sx={{
-                backgroundImage: 'url("bg-home.png")',
-                backgroundPosition: 'center',
-                backgroundSize: 'cover',
-                width: '100vw',
-                boxSizing: 'border-box',
-                height: 'calc(100vh - 37.5px)',
-                pl: '20px',
-                overflow: 'auto',
-                alignContent: 'flex-start'
-              }}>
+                // backgroundImage: 'url("bg-home.png")',
+                // backgroundPosition: 'center',
+                // backgroundSize: 'cover',
+                // width: '100vw',
+                // boxSizing: 'border-box',
+                // height: 'calc(100vh - 37.5px)',
+                // pl: '20px',
+                // overflow: 'auto',
+                // alignContent: 'flex-start'
+              }}
+              className="boxContainer">
                 {children}
               </Box>
               <Footer />

@@ -19,6 +19,17 @@ const About = () => {
       py: 10,
       pl: { xs: 6, sm: 10, md: 20, lg: 20 },
       pr: { xs: 6, sm: 10, md: 20, lg: 20 },
+
+      alignItems: 'center',
+      backgroundImage: 'url("bg-home.png")',
+      backgroundPosition: 'center',
+      backgroundSize: 'cover',
+      width: '100vw',
+      boxSizing: 'border-box',
+      height: 'calc(100vh - 37.5px)',
+      // pl: '20px',
+      overflow: 'auto',
+      // alignContent: 'flex-start'
     }}>
 
       {/* <Grid container sx={{
