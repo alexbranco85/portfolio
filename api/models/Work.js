@@ -16,6 +16,16 @@ module.exports = (sequelize, DataType) => {
       length: 1500,
       allowNull: false
     },
+    work_objective: {
+      type: DataType.STRING,
+      length: 1500,
+      allowNull: false
+    },
+    work_year: {
+      type: DataType.STRING,
+      length: 4,
+      allowNull: false
+    },
   }, {
     tableName: 'work',
     timestamps: false

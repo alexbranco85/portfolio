@@ -119,8 +119,6 @@ const InsertWork = () => {
       formData.append(key, textData[key]);
     }
 
-    console.log('getValues', textData)
-
     const response = await fetch(`${backendApi}savework`, {
       method: 'POST',
       body: JSON.stringify(textData),
@@ -140,10 +138,6 @@ const InsertWork = () => {
     getCategories();
   }, [])
 
-  useEffect(() => {
-    console.log('watch', watch('descricao'));
-  }, [watch('descricao')])
-
   return (
     <form id="form-work" onSubmit={handleSubmit((e) => handleSubmitForm(e))}>
       <Grid container spacing={2} sx={{ px: 20, py: 5 }}>
@@ -153,7 +147,15 @@ const InsertWork = () => {
         <Grid item sm={12}>
           <InputText
             name="work_title"
-            label="Title"
+            label="Título"
+            variant="outlined"
+            control={control}
+            fullWidth />
+        </Grid>
+        <Grid item sm={12}>
+          <InputText
+            name="work_year"
+            label="Ano"
             variant="outlined"
             control={control}
             fullWidth />
@@ -164,14 +166,13 @@ const InsertWork = () => {
             label={'Descrição'}
             control={control}
           />
-          {/* <InputText
-            name="work_description"
-            label="Description"
-            multiline
-            rows={5}
-            variant="outlined"
+        </Grid>
+        <Grid item sm={12}>
+          <TextEditor
+            name={'work_objective'}
+            label={'Objetivos'}
             control={control}
-            fullWidth /> */}
+          />
         </Grid>
         <Grid item sm={12}>
           <SelectField

@@ -73,12 +73,12 @@ const JobSingle = () => {
           <Grid container spacing={4}>
 
             <Grid item xs={12} sm={2}>
-              <Typography variant="h2" className="custom-subtitle">ANO</Typography>
-              <Typography sx={{ fontSize: '21px', color: '#fff' }}>2023</Typography>
+              <Typography variant="h2" className="custom-subtitle">{t("YEAR")}</Typography>
+              <Typography sx={{ fontSize: '21px', color: '#fff' }}>{work?.work_year}</Typography>
             </Grid>
 
             <Grid item xs={12} sm={10}>
-              <Typography variant="h2" className="custom-subtitle">CATEGORIAS</Typography>
+              <Typography variant="h2" className="custom-subtitle">{t("CATEGORIES")}</Typography>
 
               <Box sx={{ display: 'flex', gap: '5px' }}>
                 {work?.work_has_category.map((item, index) => (
@@ -87,15 +87,26 @@ const JobSingle = () => {
               </Box>
 
             </Grid>
-            
+
           </Grid>
           <Grid item xs={12} sm={12} sx={{ mt: 4 }}>
-            <Typography variant="h2" className="custom-subtitle">DESCRIÇÃO</Typography>
+            <Typography variant="h2" className="custom-subtitle">{t("DESCRIPTION")}</Typography>
             <Typography sx={{ '& p': { marginBottom: 0, marginTop: 1 } }} dangerouslySetInnerHTML={{ __html: t(work?.work_description) }} />
           </Grid>
           <Grid item xs={12} sm={12} sx={{ mt: 4 }}>
             <Button onClick={() => router.replace('/jobs')} variant="outlined">{t('Back')}</Button>
           </Grid>
+          {work.work_objective && (
+            <>
+              <Grid item xs={12} sm={12} sx={{ mt: 4 }}>
+                <Typography variant="h2" className="custom-subtitle">{t("OBJECTIVES")}</Typography>
+                <Typography sx={{ '& p': { marginBottom: 0, marginTop: 1 } }} dangerouslySetInnerHTML={{ __html: t(work?.work_objective) }} />
+              </Grid>
+              <Grid item xs={12} sm={12} sx={{ mt: 4 }}>
+                <Button onClick={() => router.replace('/jobs')} variant="outlined">{t('Back')}</Button>
+              </Grid>
+            </>
+          )}
         </Grid>
 
         {images?.length > 1 && (

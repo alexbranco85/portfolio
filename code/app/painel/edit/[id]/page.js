@@ -104,6 +104,7 @@ const InsertWork = () => {
     setValue('category', categories);
     setValue('work_description', workEdit?.work_description);
     setValue('id_work', workEdit?.id_work);
+    setValue('work_objective', workEdit?.work_objective);
   }
 
   const removeImg = (item, index) => {
@@ -236,14 +237,13 @@ const InsertWork = () => {
             control={control}
             setValue={setValue}
           />
-          {/* <InputText
-            name="work_description"
-            label="Description"
-            multiline
-            rows={5}
-            variant="outlined"
+        </Grid>
+        <Grid item sm={12}>
+          <TextEditor
+            name={'work_objective'}
+            label={'Objetivos'}
             control={control}
-            fullWidth /> */}
+          />
         </Grid>
         <Grid item sm={12}>
           <SelectField
