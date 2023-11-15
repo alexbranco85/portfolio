@@ -19,7 +19,7 @@ module.exports = (sequelize, DataType) => {
     work_objective: {
       type: DataType.STRING,
       length: 1500,
-      allowNull: false
+      allowNull: true
     },
     work_year: {
       type: DataType.STRING,

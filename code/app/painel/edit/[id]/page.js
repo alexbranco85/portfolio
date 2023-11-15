@@ -106,6 +106,7 @@ const InsertWork = () => {
     setValue('work_description', workEdit?.work_description);
     setValue('id_work', workEdit?.id_work);
     setValue('work_objective', workEdit?.work_objective);
+    setValue('work_year', workEdit?.work_year);
   }
 
   const removeImg = (item, index) => {
