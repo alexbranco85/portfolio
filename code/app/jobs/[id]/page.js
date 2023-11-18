@@ -60,6 +60,7 @@ const JobSingle = () => {
         pl: { xs: 6, sm: 10, md: 20, lg: 20 },
         pr: { xs: 6, sm: 10, md: 20, lg: 20 },
         py: 5,
+        pb: '80px',
         backgroundColor: '#1a1a1a',
         display: 'flex',
         alignContent: 'flex-start'
