@@ -60,13 +60,12 @@ const JobSingle = () => {
         pl: { xs: 6, sm: 10, md: 20, lg: 20 },
         pr: { xs: 6, sm: 10, md: 20, lg: 20 },
         py: 5,
-        pb: '80px',
         backgroundColor: '#1a1a1a',
         display: 'flex',
         alignContent: 'flex-start'
       }}>
 
-        <Grid item lg={6} md={6} sm={12} xs={12} sx={{ mt: 2 }}>
+        <Grid item lg={6} md={6} sm={12} xs={12} sx={{ mt: 2, pb: '80px' }}>
           <Grid item sm={12}>
             <Typography variant="h1" className="custom-subtitle">{t(work?.work_title)}</Typography>
           </Grid>
