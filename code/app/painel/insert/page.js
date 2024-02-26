@@ -8,11 +8,17 @@ import Dropzone from "react-dropzone";
 import backendApi from "../../api/api";
 import { toast } from "react-toastify";
 import { TextEditor } from "../../components/Fields/TextEditor";
+import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 const { InputText } = require("../../components/Fields/InputText")
 const { SelectField } = require("../../components/Fields/SelectField")
 
 const InsertWork = () => {
+
+  const { data: session } = useSession();
+
+  const router = useRouter();
 
   const [categories, setCategories] = useState([]);
   const [images, setImages] = useState([]);
@@ -26,6 +32,7 @@ const InsertWork = () => {
     control,
     getValues,
     reset,
+    setValue,
     formState: { errors },
   } = useForm({
     defaultValues: {
@@ -90,7 +97,7 @@ const InsertWork = () => {
       body: formData,
       'Content-Type': 'multipart/form-data'
     }).then(async res => {
-      console.log('res', res)
+
       let resJson = await res.json();
       if (resJson.success) {
         setImages([]);
@@ -124,14 +131,15 @@ const InsertWork = () => {
       body: JSON.stringify(textData),
       headers: {
         'Content-Type': 'application/json',
+        'Authorization': session.token
       },
     })
       .then(response => response.json())
-      .then(data => {
+      .then(async data => {
         if (data && (images.length > 0 || featuredImage.length > 0)) {
-          handleUploadImages(data.id_work);
+          await handleUploadImages(data.id_work)
         }
-      })
+      }).then(() => router.push('/painel'))
   }
 
   useEffect(() => {
@@ -165,6 +173,7 @@ const InsertWork = () => {
             name={'work_description'}
             label={'Descrição'}
             control={control}
+            setValue={setValue}
           />
         </Grid>
         <Grid item sm={12}>
@@ -172,6 +181,7 @@ const InsertWork = () => {
             name={'work_objective'}
             label={'Objetivos'}
             control={control}
+            setValue={setValue}
           />
         </Grid>
         <Grid item sm={12}>

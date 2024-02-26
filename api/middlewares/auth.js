@@ -1,9 +1,10 @@
 const jwt = require('jsonwebtoken')
 
 const auth = (req, res, next) => {
+  
   if (req.headers.authorization) {
       try {
-        jwt.verify(req.headers.authorization, process.env.SECRET)
+        jwt.verify(req.headers.authorization, process.env.SECRET);
         next()
       } catch (error) {
         res.status(401).json({ error })

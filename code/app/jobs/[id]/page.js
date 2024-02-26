@@ -57,49 +57,52 @@ const JobSingle = () => {
       <Grid container spacing={2} sx={{
         mt: 0,
         height: 'calc(100vh - 37.5px)',
+        maxWidth: '1600px',
+        mx: 'auto',
         pl: { xs: 6, sm: 10, md: 20, lg: 20 },
         pr: { xs: 6, sm: 10, md: 20, lg: 20 },
         py: 5,
         backgroundColor: '#1a1a1a',
         display: 'flex',
-        alignContent: 'flex-start'
+        alignContent: 'flex-start',
       }}>
 
-        <Grid item lg={6} md={6} sm={12} xs={12} sx={{ mt: 2, pb: '80px' }}>
+        <Grid item lg={12} md={12} sm={12} xs={12} sx={{ mt: 2, pb: '20px' }}>
+
           <Grid item sm={12}>
-            <Typography variant="h1" className="custom-subtitle">{t(work?.work_title)}</Typography>
+            <Typography variant="h1" className="custom-subtitle" align="center">{t(work?.work_title)}</Typography>
           </Grid>
-          <Grid container spacing={2} sx={{ mt: 2 }}>
 
-            <Grid item sm={12}>
-              <Divider />
+          <Grid container spacing={2}>
+
+            <Grid item xs={12} sm={12} sx={{ display: 'flex', gap: '5px', justifyContent: 'center', mt: 2 }}>
+              {work?.work_has_category.map((item, index) => (
+                <Typography key={index} sx={{ border: '1px solid #F55307', color: '#F55307', p: 0.5, fontSize: '12px', marginBottom: 0 }}>{item.category.name}</Typography>
+              ))}
             </Grid>
-
-            <Grid item xs={12} sm={2}>
-              <Typography variant="h2" className="custom-subtitle">{t("YEAR")}</Typography>
-              <Typography sx={{ fontSize: '21px', color: '#fff' }}>{work?.work_year}</Typography>
-            </Grid>
-
-            <Grid item xs={12} sm={10}>
-              <Typography variant="h2" className="custom-subtitle">{t("CATEGORIES")}</Typography>
-
-              <Box sx={{ display: 'flex', gap: '5px' }}>
-                {work?.work_has_category.map((item, index) => (
-                  <Typography key={index} sx={{ backgroundColor: '#F55307', p: 0.5, fontSize: '12px', marginBottom: 0 }}>{item.category.name}</Typography>
-                ))}
-              </Box>
-
-            </Grid>
-
-            <Grid item sm={12}>
-              <Divider />
-            </Grid>
-
 
           </Grid>
+
+          <Grid item xs={12} sm={12} sx={{ display: 'flex', gap: 1, alignItems: 'center', justifyContent: 'center', mt: 2 }}>
+            <Typography variant="h2" className="custom-subtitle">{t("YEAR")}</Typography>
+            <Typography variant="h2" className="custom-subtitle" sx={{ color: '#fff' }}>{work?.work_year}</Typography>
+          </Grid>
+
+          <Grid item sm={12} xs={12} sx={{ mt: 2 }}>
+            <img src={`${backendApi}images/${images[0]?.name}`} style={{ width: '100%' }} />
+          </Grid>
+
+          <Grid item xs={12} sm={12} sx={{ mt: 4 }}>
+            <Button onClick={() => router.replace('/jobs')} variant="outlined">{t('Back')}</Button>
+          </Grid>
+
           <Grid item xs={12} sm={12} sx={{ mt: 4 }}>
             <Typography variant="h2" className="custom-subtitle">{t("DESCRIPTION")}</Typography>
             <Typography sx={{ '& p': { marginBottom: 0, marginTop: 1 } }} dangerouslySetInnerHTML={{ __html: t(work?.work_description) }} />
+          </Grid>
+
+          <Grid item sm={12} xs={12} sx={{ mt: 2 }}>
+            <img src={`${backendApi}images/${images[1]?.name}`} style={{ width: '100%' }} />
           </Grid>
 
           {work?.work_objective && (
@@ -111,12 +114,21 @@ const JobSingle = () => {
             </>
           )}
 
+            {images.map((img, index) => {
+              if (index != 0 && index != 1) {
+                return <Grid item sm={12} xs={12} sx={{ mt: 2 }}><img src={`${backendApi}images/${images[index]?.name}`} style={{ width: '100%' }} /></Grid>
+              }
+            })}
+          
+
           <Grid item xs={12} sm={12} sx={{ mt: 4 }}>
             <Button onClick={() => router.replace('/jobs')} variant="outlined">{t('Back')}</Button>
           </Grid>
         </Grid>
 
-        {images?.length > 1 && (
+
+
+        {/* {images?.length > 1 && (
           <Grid item lg={6} md={6} sm={12} xs={12}>
             <Carousel>
               {images.map((item, i) => (
@@ -124,21 +136,9 @@ const JobSingle = () => {
               ))}
             </Carousel>
           </Grid>
-        )}
-
-        {/* {images?.length > 1 && (
-          <Grid item lg={8} md={12} sm={12} xs={12}>
-            <Grid container spacing={0}>
-              {images.map((item, index) => (
-                <Grid key={index} lg={3} md={4} sm={6} xs={12}>
-                  <img src={`${backendApi}images/${item.name}`} width={'100%'} />
-                </Grid>
-              ))}
-            </Grid>
-          </Grid>
         )} */}
 
-        {images?.length == 1 && (
+        {/* {images?.length == 1 && (
           <Grid item lg={6} md={6} sm={12} xs={12}>
             <img src={`${backendApi}images/${images[0]?.name}`} width={'100%'} />
           </Grid>
@@ -148,7 +148,7 @@ const JobSingle = () => {
           <Grid item lg={6} md={6} sm={12} xs={12}>
             <img src={`${backendApi}images/${featuredImage[0]?.name}`} width={'100%'} />
           </Grid>
-        )}
+        )} */}
 
       </Grid>
     </DefaultLoading >

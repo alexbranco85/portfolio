@@ -6,6 +6,43 @@ const path = require('path');
 
 const WorkController = {
 
+  filterWork: async (req, res) => {
+    try {
+
+      const { filter } = req.body;
+
+      const works = await Work.findAll({
+        include: [
+          {
+            model: Work_has_category,
+            as: 'work_has_category',
+            attributes: ['id_category_fk'],
+            where: {
+              id_category_fk: filter
+            },
+            include: [
+              {
+                model: Category,
+                as: 'category',
+                attributes: ['id_category', 'name'],
+              },
+            ],
+          }, {
+            model: Image,
+            as: 'image',
+            attributes: ['id_image', 'name', 'featured'],
+          },
+        ],
+        order: [
+          ['work_year', 'DESC'],
+        ],
+      });
+
+      res.status(200).json({ data: works, success: true });
+    } catch (error) {
+      res.status(400).json({ error: error, success: false });
+    }
+  },
 
   allWork: async (req, res) => {
     try {
@@ -29,7 +66,7 @@ const WorkController = {
           },
         ],
         order: [
-          ['id_work', 'DESC'],
+          ['work_year', 'DESC'],
         ],
       });
 
@@ -146,7 +183,7 @@ const WorkController = {
       }
 
       if (removeImages) {
-        console.log('removeImages', removeImages)
+        
         for (const idImage of removeImages) {
           const relationPromise = Image.destroy({
             where: {

@@ -20,8 +20,9 @@ const loginController = require('../controllers/LoginController');
 // ** Works
 router.get('/work/:id', workController.showWork);
 router.get('/allwork', workController.allWork);
-router.put('/update/:id', workController.update);
-router.post('/savework', workController.save);
+router.post('/allwork', workController.filterWork);
+router.put('/update/:id', auth, workController.update);
+router.post('/savework', auth, workController.save);
 
 // ** Images
 router.post('/uploadimages', upload.any(), workController.uploadImages);

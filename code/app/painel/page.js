@@ -5,10 +5,14 @@ import backendApi from "../api/api";
 import { PanelMenu } from "../components/painel/panelMenu";
 import { AddCircleOutline, Check, Delete, Edit } from "@mui/icons-material";
 import { useRouter } from "next/navigation";
+import DefaultLoading from "../components/Loading";
 
 const PanelHome = () => {
 
   const [works, setWorks] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+
   const router = useRouter();
 
   const getWork = async () => {
@@ -18,6 +22,7 @@ const PanelHome = () => {
       })
       .then(data => {
         setWorks(data.data)
+        setLoading(false);
       })
   }
 
@@ -26,7 +31,7 @@ const PanelHome = () => {
   }, [])
 
   return (
-    <>
+    <DefaultLoading loading={loading}>
       <Grid container spacing={4} sx={{ px: 20, py: 5 }}>
         <Grid item sm={12}>
           <PanelMenu />
@@ -50,7 +55,7 @@ const PanelHome = () => {
           <Divider />
         </Grid>
         <Grid item sm={12}>
-          {works.length > 0 && (
+          {works?.length > 0 && (
             works.map((item, index) => (
               <Grid container key={index} spacing={1} sx={{ alignItems: 'center', pt: 1 }}>
                 <Grid item sm={8}>
@@ -83,7 +88,7 @@ const PanelHome = () => {
             ))}
         </Grid>
       </Grid>
-    </>
+    </DefaultLoading>
   )
 }
 

@@ -19,11 +19,15 @@ const ptBR = {
   "Design & Prototype:": "Design & Prototipagem:",
   "I am committed to delivering innovative and functional solutions that meet my clients needs and provide memorable experiences for users. If you are looking for a versatile and passionate professional, I am available to collaborate on challenging and inspiring projects. Let's create something amazing together!": "Estou comprometido em fornecer soluções inovadoras e funcionais que atendam às necessidades dos meus clientes e proporcionem experiências memoráveis para os usuários. Se você procura um profissional versátil e apaixonado, estou disponível para colaborar em projetos desafiadores e inspiradores. Vamos criar algo incrível juntos!",
   "Back": "Voltar",
-  "Social Media and Design - Campinas Power Challenge": "Redes Sociais e Design - Campinas Power Challenge",
+  "Filter by:": "Filtrar por:",
+  
+  "Social Media and Design - Campinas Power Challenge": "Social Media e Design - Campinas Power Challenge",
 
   // **** JOBS
 
   // **** Social Media and Design - Campinas Power Challenge
+
+  "Social Media and Design - Campinas Power Challenge": "Social Media e Design - Campinas Power Challenge",
 
   "<p>In the thrilling world of CrossFit, effective communication is as crucial as strength and endurance. In this design project, I fully immersed myself in the challenge of portraying the intensity, passion, and energy of a CrossFit sporting event, transforming them into images that stand out and engage the audience. The event took place in December 2016 in Campinas, SP.</p>": "<p>No emocionante mundo do CrossFit, a comunicação eficaz é tão crucial quanto a força e a resistência. Neste projeto de design, eu me envolvi completamente no desafio de retratar a intensidade, paixão e energia de um evento esportivo de CrossFit, transformando-os em imagens que se destacam e envolvem o público. O evento ocorreu em dezembro de 2016 em Campinas, SP.</p>",
 
@@ -37,11 +41,15 @@ const ptBR = {
 
   // **** Social Media and Design - Premium Cup BJJ - 5ª Edição
 
+  "Social Media and Design - Premium Cup BJJ - 5ª Edição": "Social Media e Design - Premium Cup BJJ - 5ª Edição",
+
   "<p>In August 2018, Campinas became the epicenter of the jiu-jitsu world with a breathtaking championship. It was a celebration of strength, technique, and determination, where the best athletes faced each other on the mats in pursuit of glory. The event was an unforgettable experience that brought together the jiu-jitsu community in Campinas and beyond.</p>": "<p>Em agosto de 2018, Campinas se tornou o epicentro do mundo do jiu-jitsu com um campeonato de tirar o fôlego. Foi uma celebração de força, técnica e determinação, onde os melhores atletas se enfrentaram nos tatames em busca da glória. O evento foi uma experiência inesquecível que reuniu a comunidade de jiu-jitsu em Campinas e além.</p>",
 
   "<p>• Share the passion, excitement, and intense competition of jiu-jitsu with our community.</p><p>• Highlight the talents and achievements of the athletes who participated in this exciting championship.</p><p>• Provide essential information about the event, such as dates, venues, and registration details.</p><p>The social media graphics created for this event captured the unique energy of jiu-jitsu and were designed to engage and inspire both participants and enthusiasts of this passionate sport.</p>": "<p>• Compartilhar a paixão, empolgação e intensa competição do jiu-jitsu com nossa comunidade.</p><p>• Destacar os talentos e conquistas dos atletas que participaram deste empolgante campeonato.</p><p>• Fornecer informações essenciais sobre o evento, como datas, locais e detalhes de inscrição.</p><p>Os gráficos de mídia social criados para este evento capturaram a energia única do jiu-jitsu e foram projetados para envolver e inspirar tanto participantes quanto entusiastas deste esporte apaixonado.</p>",
 
   // **** Social Media and Design - InVita Formulas
+
+  "Social Media and Design - InVita Formulas": "Social Media e Design - InVita Formulas",
 
   "<p>In the innovative field of compounding pharmacy, effective communication is as crucial as precision in crafting personalized medications. In our social media projects, we delve deep into the challenge of conveying quality, health, and well-being, transforming these elements into posts that stand out and engage the audience.</p>": "<p>No inovador campo da farmácia de manipulação, a comunicação eficaz é tão crucial quanto a precisão na elaboração de medicamentos personalizados. Em nossos projetos de mídia social, mergulhamos profundamente no desafio de transmitir qualidade, saúde e bem-estar, transformando esses elementos em postagens que se destacam e envolvem o público.</p>",
 
@@ -54,6 +62,8 @@ const ptBR = {
   "<p>• Highlight the mastery and expertise of the best instructors in the Campinas region.</p><p>• Disseminate vital information about the event, including date, location, and participants.</p><p>• Celebrate the determination and sportsmanship that make jiu-jitsu a unique and inspiring discipline.</p>":"<p>• Destacar a maestria e expertise dos melhores instrutores na região de Campinas.</p><p>• Disseminar informações vitais sobre o evento, incluindo data, local e participantes.</p><p>• Celebrar a determinação e o espírito esportivo que tornam o jiu-jitsu uma disciplina única e inspiradora.</p>",
 
   // **** Site WordPress - Instituto Conexões
+
+  
 
   "<p>In the enriching world of psychoanalysis, effective communication is as essential as understanding and empathy. In this WordPress website project, I fully immersed myself in the challenge of conveying the depth, empathy, and knowledge of a psychoanalytic institute, transforming these elements into a website that stands out and engages visitors. The institute serves as a beacon of wisdom and understanding, and this website is its virtual window to the world.</p><p><strong>Link para o site:</strong> <a href='https://www.institutoconexoes.com.br/' rel='noopener noreferrer' target='_blank'>www.institutoconexoes.com.br</a></p>":"<p>No enriquecedor mundo da psicanálise, a comunicação eficaz é tão essencial quanto a compreensão e empatia. Neste projeto de site WordPress, mergulhei completamente no desafio de transmitir a profundidade, empatia e conhecimento de um instituto psicanalítico, transformando esses elementos em um site que se destaca e envolve os visitantes. O instituto serve como um farol de sabedoria e compreensão, e este site é sua janela virtual para o mundo.</p><p><strong>Link para o site:</strong> <a href='https://www.institutoconexoes.com.br/' rel='noopener noreferrer' target='_blank'>www.institutoconexoes.com.br</a></p>",
 
@@ -86,6 +96,8 @@ const ptBR = {
   "<p>Project developed during the course at Digital House, spanning a nine-month period. The outcome is an e-commerce platform specializing in collectible sneakers from various brands. To meet this challenge, we employed technologies such as Node.js with Express.js and Sequelize.js in the backend, while on the frontend, we utilized React.js with Axios and Redux. The system is supported by a robust SQL database.</p><p>In addition to the online store, we created an administrative interface, enabling the insertion, editing, and deletion of products, as well as efficient order management.</p>":"<p>Projeto desenvolvido durante o curso na Digital House, abrangendo um período de nove meses. O resultado é uma plataforma de e-commerce especializada em tênis colecionáveis de diversas marcas. Para enfrentar esse desafio, empregamos tecnologias como Node.js com Express.js e Sequelize.js no backend, enquanto no frontend utilizamos React.js com Axios e Redux. O sistema é suportado por um banco de dados SQL robusto.</p><p>Além da loja online, criamos uma interface administrativa, possibilitando a inserção, edição e exclusão de produtos, assim como uma gestão eficiente de pedidos.</p>",
 
   // **** Administrative Portfolio Dashboard
+
+  "Administrative Portfolio Dashboard": "Painel Administrativo para Portfólio",
 
   "<p>Streamlining the everyday tasks of adding, editing, and removing categories and projects in your portfolio, I've crafted a user-friendly administrative dashboard. This sleek panel features Next Auth authentication for secure access and seamlessly communicates with the Node.js backend, ensuring effortless updates to your SQL database.</p><p><br></p><p>The libraries used were:</p><p><br></p><p>Front-End:</p><p>- Material UI</p><p>- I18Next</p><p>- Next Auth</p><p>- React Dom</p><p>- React Dropzone</p><p>- React Hook Form</p><p>- React toastfy</p><p>- Slate React</p><p><br></p><p>Back-End:</p><p>- BCrypt</p><p>- Cors</p><p>- Express</p><p>- JWT</p><p>- Multer</p><p>- MySql2</p><p>- Sequelize</p>":"<p>Para simplificar as tarefas diárias de adicionar, editar e remover categorias e projetos em seu portfólio, criei um painel administrativo amigável ao usuário. Este painel elegante apresenta autenticação Next Auth para acesso seguro e se comunica perfeitamente com o backend Node.js, garantindo atualizações sem esforço em seu banco de dados SQL.</p><p><br></p><p>As bibliotecas utilizadas foram:</p><p><br></p><p>Front-End:</p><p>- Material UI</p><p>- I18Next</p><p>- Next Auth</p><p>- React Dom</p><p>- React Dropzone</p><p>- React Hook Form</p><p>- React toastfy</p><p>- Slate React</p><p><br></p><p>Back-End:</p><p>- BCrypt</p><p>- Cors</p><p>- Express</p><p>- JWT</p><p>- Multer</p><p>- MySql2</p><p>- Sequelize</p>",
 

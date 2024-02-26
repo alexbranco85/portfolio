@@ -5,6 +5,33 @@ const bcrypt = require('bcrypt');
 
 const UserController = {
 
+  create: async (req, res) => {
+
+    try {
+      const user = await User.findOne({
+        where: {
+          cpf: req.body.cpf
+        }
+      })
+
+      if (!user) {
+        let newUser = {
+          ...req.body
+        }
+
+        const hash = bcrypt.hashSync(newUser.pwd, 16);
+        newUser.password = hash;
+
+        await User.create(newUser)
+
+        res.status(201).json({ msg: 'Usuário criado com sucesso!' })
+
+      } else res.status(400).json({ error: "Usuário já cadastrado!" })
+    } catch (error) {
+      res.status(400).json({ error })
+    }
+  },
+
   login: async (req, res) => {
     try {
       const login = await User.findOne({
@@ -27,6 +54,7 @@ const UserController = {
       res.status(500).json({ message: 'Erro interno no servidor' });
     }
   },
+
   verify: async (req, res) => {
     let token = req.body.token;
     try {

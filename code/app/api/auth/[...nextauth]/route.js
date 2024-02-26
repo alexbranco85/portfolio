@@ -23,7 +23,6 @@ const authOptions = {
         })
 
         const user = await response.json();
-        console.log('user', user)
 
         if(user && response.ok){
           return user
@@ -34,6 +33,27 @@ const authOptions = {
   ],
   pages: {
     signIn: '/login'
+  },
+  callbacks: {
+    jwt: async ({ token, user }) => {
+      
+      if (user) {
+        return {
+          ...token,
+          ...user,
+        }
+      }
+      return token
+    },
+    session: async ({ session, token }) => {
+      return {
+        ...session,
+        token: token.token
+      }
+    }
+  },
+  session: {
+    maxAge: 10 * 60, // 10 minutes in seconds
   }
 }
 

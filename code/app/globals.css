@@ -157,3 +157,17 @@ a:hover {
 .workImg:hover {
   filter: grayscale(0%);
 }
+
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px; /* A altura só é vista quando a rolagem é horizontal */
+}
+
+::-webkit-scrollbar-track {
+  background: #F55307;
+  padding: 2px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #eeee00;
+}

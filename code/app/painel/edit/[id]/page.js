@@ -12,11 +12,13 @@ import { usePathname } from "next/navigation";
 import { useSearchParams } from "next/navigation";
 import { toast } from "react-toastify";
 import { TextEditor } from "../../../components/Fields/TextEditor";
-
+import { useSession } from "next-auth/react";
 const { InputText } = require("../../../components/Fields/InputText")
 const { SelectField } = require("../../../components/Fields/SelectField")
 
 const InsertWork = () => {
+
+  const { data: session } = useSession();
 
   const [categories, setCategories] = useState([]);
   const [images, setImages] = useState([]);
@@ -185,6 +187,7 @@ const InsertWork = () => {
       body: JSON.stringify(textData),
       headers: {
         'Content-Type': 'application/json',
+        'Authorization': session.token
       },
     })
       .then(response => response.json())
