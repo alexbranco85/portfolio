@@ -116,7 +116,7 @@ const JobSingle = () => {
 
             {images.map((img, index) => {
               if (index != 0 && index != 1) {
-                return <Grid item sm={12} xs={12} sx={{ mt: 2 }}><img src={`${backendApi}images/${images[index]?.name}`} style={{ width: '100%' }} /></Grid>
+                return <Grid key={index} item sm={12} xs={12} sx={{ mt: 2 }}><img src={`${backendApi}images/${images[index]?.name}`} style={{ width: '100%' }} /></Grid>
               }
             })}
           
