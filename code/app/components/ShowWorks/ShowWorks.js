@@ -21,7 +21,7 @@ const ShowWorks = () => {
   const { t } = useTranslation();
 
   const getWork = async () => {
-    
+
     setLoading(true);
 
     await fetch(`${backendApi}allwork`)
@@ -115,7 +115,7 @@ const ShowWorks = () => {
   }, [filter])
 
   return (
-    
+
     <Grid container spacing={2} sx={{
       mt: 0,
       height: 'calc(100vh - 37.5px)',
@@ -130,6 +130,7 @@ const ShowWorks = () => {
         <Typography fontSize={'small'} sx={{ mb: 0 }}>{t("Filter by:")}</Typography>
         {categories?.length > 0 && categories.map((item, index) =>
           <Box
+            key={index}
             sx={{
               border: filter.some(filter => filter == item.id_category) ? '1px solid #eeee00' : '1px solid #eee',
               p: 1,

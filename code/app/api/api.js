@@ -1,2 +1,2 @@
-const backendApi = 'http://localhost:3001/'
+const backendApi = 'https://api.alexbranco.dev.br/'
 export default backendApi;
